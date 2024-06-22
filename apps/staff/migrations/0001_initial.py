@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('base', '0001_initial'),
+        ('faculties', '0001_initial'),
     ]
 
     operations = [
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('is_staff', models.BooleanField(default=True)),
                 ('is_countable', models.BooleanField(default=True)),
                 ('notes', models.TextField(blank=True, max_length=1000, null=True)),
-                ('faculty', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='staff', to='base.faculty')),
+                ('faculty', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='staff', to='faculties.faculty')),
             ],
             options={
                 'verbose_name_plural': 'Staff',

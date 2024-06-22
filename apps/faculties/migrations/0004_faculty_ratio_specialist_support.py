@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('base', '0003_faculty_ratio_count_faculty_ratio_staff_count_and_more'),
+        ('faculties', '0003_faculty_ratio_count_faculty_ratio_staff_count_and_more'),
     ]
 
     operations = [

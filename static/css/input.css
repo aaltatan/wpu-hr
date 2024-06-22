@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+form.form {
+
+  @apply px-2 py-1 w-[min(400px,100%)];
+
+  & > p {
+    @apply grid grid-cols-3 my-2;
+  }
+  
+  & > p > span {
+    @apply hidden;
+  }
+  
+  & > p > label {
+    @apply col-span-2;
+  }
+
+  & > p > input {
+    @apply bg-slate-50 outline-none focus:ring-2 focus:ring-orange-500 px-2 py-1 rounded-md;
+  }
+
+  & > p:focus-within label {
+    @apply text-orange-500;
+  }
+
+}
+
+.btn {
+  @apply px-4 py-1 font-semibold text-center duration-150 block outline-none;
+}
+
+.btn-primary {
+  @apply bg-orange-500 text-white hover:bg-orange-600 focus:ring-2 focus:ring-orange-700 tracking-tighter;
+}
+
+.btn-secondry {
+  @apply hover:bg-slate-100 focus:bg-slate-100;
+}

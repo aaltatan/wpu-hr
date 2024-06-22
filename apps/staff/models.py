@@ -1,5 +1,5 @@
 from django.db import models
-from ..base import models as base_models
+from ..faculties import models as faculties_models
 
 
 class Time(models.TextChoices):
@@ -24,7 +24,7 @@ class Staff(models.Model):
 
     name = models.CharField(max_length=255, unique=True)
     faculty = models.ForeignKey(
-        base_models.Faculty,
+        faculties_models.Faculty,
         on_delete=models.PROTECT,
         related_name='staff'
     )

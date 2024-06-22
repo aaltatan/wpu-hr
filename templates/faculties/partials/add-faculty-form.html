@@ -1,0 +1,11 @@
+<form class="form" action="" id="add-faculty-form">
+  {% csrf_token %}
+  <h1 class="font-semibold text-center text-xl tracking-tighter my-4">
+    إضافة كلية جديدة
+  </h1>
+  {{ form.as_p }}
+  <div class="flex item-center justify-center gap-1">
+    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="reset" class="btn btn-secondry">Reset</button>
+  </div>
+</form>

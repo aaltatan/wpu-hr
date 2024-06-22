@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Faculties{% endblock %}
+
+{% block body %}
+  <div class="flex gap-1">
+    <div class="flex-grow-0 shadow-sm p-2">
+      {% include 'faculties/partials/add-faculty-form.html' %}
+    </div>
+    <div class="flex-grow">
+      {% include 'faculties/partials/faculties-list.html' %}
+    </div>
+  </div>
+  
+{% endblock %}
