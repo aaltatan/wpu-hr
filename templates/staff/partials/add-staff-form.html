@@ -1,0 +1,36 @@
+<form
+  class="form animate-fade"
+  id="staff-form"
+  hx-post="{% url 'add-staff' %}"
+  hx-target="#staff-table"
+  hx-swap="outerHTML"
+  hx-on::submit="removeErrorList()"
+  hx-on::after-request="this.reset()"
+>
+  <h1>إضافة عضو جديد</h1>
+  {{ form }}
+  <div class="flex item-center justify-center gap-1 my-8">
+
+    <button 
+    type="submit" 
+    class="btn btn-success flex items-center gap-1" 
+    title="إضافة"
+    >
+      {% include 'includes/icons/floppy.html' with ratio="2rem" %}
+      <span>إضافة</span>
+    </button>
+
+    <button 
+      type="reset" 
+      class="btn btn-secondry flex items-center gap-1" 
+      title="اعادة التعيين"
+      hx-get="{% url 'get-add-staff-form' %}"
+      hx-target="#faculty-form"
+      hx-swap="outerHTML"
+    >
+      {% include 'includes/icons/reset.html' with ratio="1.5rem" %}
+      <span>إعادة تعيين</span>
+    </button>
+
+  </div>
+</form>

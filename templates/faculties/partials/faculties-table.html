@@ -1,0 +1,66 @@
+<div id="faculties-table" class="overflow-auto animate-fade">
+  <table class="custom-table">
+
+    <thead>
+
+      <tr>
+        <th>#</th>
+        <th>الاسم</th>
+        <th>عدد طلاب المنح</th>
+        <th>عدد الخريجين</th>
+        <th>عدد الطلاب دون الخريجين والمنح</th>
+        <th>نسبة الداعم الى الاختصاصي</th>
+        <th>نسبة الملاك الذي يجب تحقيقها</th>
+        <th>عدد الطلاب المسموح به لكل مدرس</th>
+        <th>عدد الطلاب حسب الاعتمادية (الملاك)</th>
+        <th>خيارات</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      {% for faculty in faculties %}
+      <tr id="faculty-{{ faculty.id }}" class="animate-fade">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ faculty.name }}</td>
+        <td>{{ faculty.count_of_scholarship_students }}</td>
+        <td>{{ faculty.count_of_graduates }}</td>
+        <td>{{ faculty.count_of_students }}</td>
+        <td>{{ faculty.ratio_specialist_support }}</td>
+        <td>{{ faculty.ratio }}</td>
+        <td>{{ faculty.ratio_count }}</td>
+        <td>{{ faculty.ratio_staff_count }}</td>
+        <td>
+          <div class="flex items-center justify-center gap-1">
+            <button
+              class="btn btn-danger"
+              hx-delete="{% url 'delete-faculty' id=faculty.id %}"
+              hx-confirm="هل تريد حذف كلية {{ faculty.name }}؟"
+              hx-target="closest tr"
+              hx-swap="outerHTML"
+              title="حذف {{ faculty.name }}"
+            >
+              {% include 'includes/icons/trash.html' with ratio="1.25rem" %}
+            </button>
+            <button
+              class="btn btn-secondry"
+              hx-get="{% url 'get-update-form' id=faculty.id %}"
+              hx-target="#faculty-form"
+              hx-swap="outerHTML"
+              title="تعديل {{ faculty.name }}"
+            >
+              {% include 'includes/icons/pen.html' with ratio="1.25rem" %}
+            </button>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+
+{% if messages %}
+  {% include 'includes/messages.html' %}
+{% endif %}

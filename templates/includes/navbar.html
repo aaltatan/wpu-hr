@@ -1,0 +1,21 @@
+<header class="w-[min(100%,80ch)] mx-auto my-2 p-6 rounded-md shadow-md sticky top-2 left-0 border border-slate-100 bg-white z-50">
+  <nav class="flex">
+    <a href="{% url 'index' %}">
+      <h1 class="tracking-tighter text-2xl font-semibold">WPU HR</h1>
+    </a>
+    <ul class="mr-auto flex items-center justify-center gap-2">
+      <li>
+        <a 
+          href="{% url 'faculties-index' %}"
+          class="rounded-md px-2 py-1 hover:bg-slate-100 underline"
+        >الكليات</a>
+      </li>
+      <li>
+        <a 
+          href="{% url 'staff-index' %}"
+          class="rounded-md px-2 py-1 hover:bg-slate-100 underline"
+        >الهئية التدريسية</a>
+      </li>
+    </ul>
+  </nav>
+</header>

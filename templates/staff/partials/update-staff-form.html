@@ -1,0 +1,37 @@
+<form
+  class="form animate-fade"
+  id="staff-form"
+  hx-post="{% url 'update-staff' id=stf.id %}"
+  hx-target="#staff-table"
+  hx-swap="outerHTML"
+>
+  <h1>{{ stf.name }}</h1>
+
+  {{ form }}
+  
+  <div class="flex item-center justify-center gap-1 my-8 text-sm">
+
+    <button type="submit" class="btn btn-success flex items-center gap-1" title="تحديث">
+      {% include 'includes/icons/pen.html' with ratio="2rem" %}
+      <span>تحديث</span>
+    </button>
+
+    <button
+      type="submit"
+      hx-post="{% url 'get-add-staff-form' %}"
+      hx-target="#staff-form"
+      hx-swap="outerHTML"
+      class="btn btn-primary flex items-center gap-1"
+      title="إضافة عضو جديد"
+    >
+      {% include 'includes/icons/plus.html' with ratio="2rem" %}
+      <span>إضافة عضو</span>
+    </button>
+
+    <button type="reset" class="btn btn-secondry flex items-center gap-1" title="إعادة التعيين">
+      {% include 'includes/icons/reset.html' with ratio="2rem" %}
+      <span>إعادة تعيين</span>
+    </button>
+
+  </div>
+</form>

@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}">
     <script defer src="{% static 'js/htmx.min.js' %}"></script>
+    <script defer src="{% static 'js/main.js' %}"></script>
 
     {% block styles %}{% endblock %}
 
@@ -16,10 +18,14 @@
 
   </head>
 
-  <body dir="rtl">
+  <body dir="rtl" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
-    <header></header>
-    <main>{% block body %}{% endblock %}</main>
+    <ul id="messages"></ul>
+    
+    {% include 'includes/navbar.html' %}
+    <main class="p-4 mb-12 w-[min(100%,1200px)] mx-auto">
+      {% block body %}{% endblock %}
+    </main>
     <footer></footer>
 
     {% block scripts %}{% endblock %}

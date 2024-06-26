@@ -1,0 +1,74 @@
+<div id="staff-table" class="overflow-auto animate-fade">
+  <table class="custom-table">
+
+    <thead>
+
+      <tr>
+        <th>#</th>
+        <th>الاسم</th>
+        <th>الكلية</th>
+        <th>الاختصاص</th>
+        <th>الدرجة العلمية</th>
+        <th>التفرغ</th>
+        <th>ملاك</th>
+        <th>يحتسب</th>
+        <th>الخيارات</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      {% for stf in staff %}
+      <tr id="staff-{{ stf.id }}" class="animate-fade {% if not stf.is_countable %} bg-red-200 hover:!bg-red-300 {% endif %}">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ stf.name }}</td>
+        <td>{{ stf.faculty }}</td>
+        <td>{{ stf.specialty }}</td>
+        <td>{{ stf.degree }}</td>
+        <td>{{ stf.time }}</td>
+        <td>{% if stf.is_staff %} ✅ {% else %} ❌ {% endif %}</td>
+        <td>{% if stf.is_countable %} ✅ {% else %} ❌ {% endif %}</td>
+        <td>
+          <div class="flex items-center justify-center gap-1">
+            <button
+              class="btn btn-danger"
+              hx-delete="{% url 'delete-staff' id=stf.id %}"
+              hx-confirm="هل تريد حذف العضو {{ stf.name }}؟"
+              hx-target="closest tr"
+              hx-swap="outerHTML"
+              title="حذف {{ stf.name }}"
+            >
+              {% include 'includes/icons/trash.html' with ratio="1.25rem" %}
+            </button>
+            <button
+              class="btn btn-secondry"
+              hx-get="{% url 'get-update-staff-form' id=stf.id %}"
+              hx-target="#staff-form"
+              hx-swap="outerHTML"
+              title="تعديل {{ stf.name }}"
+            >
+              {% include 'includes/icons/pen.html' with ratio="1.25rem" %}
+            </button>
+            <button
+              hx-get="{% url 'toggle-countable-staff' id=stf.id %}"
+              hx-target="#staff-table"
+              hx-swap="outerHTML"
+              hx-on:click="document.getElementById('staff-filter-form').reset()"
+              class="btn btn-secondry"
+              title="{% if not stf.is_countable %}إحتساب{% else %}عدم إحتساب{% endif %} {{ stf.name }}"
+            >
+              {% include 'includes/icons/calculate.html' with ratio="1.25rem" %}
+            </button>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+
+{% if messages %}
+  {% include 'includes/messages.html' %}
+{% endif %}

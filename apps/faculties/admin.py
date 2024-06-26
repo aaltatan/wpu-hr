@@ -9,7 +9,6 @@ class FacultyAdmin(admin.ModelAdmin):
         "count_of_scholarship_students",
         "count_of_graduates",
         "count_of_students",
-        "count_of_new_students",
         "ratio",
         "ratio_specialist_support",
         "ratio_count",
@@ -21,7 +20,6 @@ class FacultyAdmin(admin.ModelAdmin):
             "count_of_scholarship_students",
             "count_of_graduates",
             "count_of_students",
-            "count_of_new_students",
         ),
         (
             "ratio",

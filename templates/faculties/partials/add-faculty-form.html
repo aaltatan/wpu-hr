@@ -1,11 +1,36 @@
-<form class="form" action="" id="add-faculty-form">
-  {% csrf_token %}
-  <h1 class="font-semibold text-center text-xl tracking-tighter my-4">
-    إضافة كلية جديدة
-  </h1>
-  {{ form.as_p }}
-  <div class="flex item-center justify-center gap-1">
-    <button type="submit" class="btn btn-primary">Add</button>
-    <button type="reset" class="btn btn-secondry">Reset</button>
+<form
+  class="form animate-fade"
+  id="faculty-form"
+  hx-post="{% url 'add-faculty' %}"
+  hx-target="#faculties-table"
+  hx-swap="outerHTML"
+  hx-on::submit="removeErrorList()"
+  hx-on::after-request="this.reset()"
+>
+  <h1>إضافة كلية جديدة</h1>
+  {{ form }}
+  <div class="flex item-center justify-center gap-1 my-8">
+
+    <button 
+    type="submit" 
+    class="btn btn-success flex items-center gap-1" 
+    title="إضافة"
+    >
+      {% include 'includes/icons/floppy.html' with ratio="2rem" %}
+      <span>إضافة</span>
+    </button>
+
+    <button 
+      type="reset" 
+      class="btn btn-secondry flex items-center gap-1" 
+      title="اعادة التعيين"
+      hx-get="{% url 'get-add-form' %}"
+      hx-target="#faculty-form"
+      hx-swap="outerHTML"
+    >
+      {% include 'includes/icons/reset.html' with ratio="1.5rem" %}
+      <span>إعادة تعيين</span>
+    </button>
+
   </div>
 </form>
