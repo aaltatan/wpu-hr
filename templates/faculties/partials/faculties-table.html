@@ -34,14 +34,14 @@
         <td>
           <div class="flex items-center justify-center gap-1">
             <button
-              class="btn btn-danger"
+              class="btn btn-secondry"
               hx-delete="{% url 'delete-faculty' id=faculty.id %}"
               hx-confirm="هل تريد حذف كلية {{ faculty.name }}؟"
               hx-target="closest tr"
               hx-swap="outerHTML"
               title="حذف {{ faculty.name }}"
             >
-              {% include 'includes/icons/trash.html' with ratio="1.25rem" %}
+              {% include 'includes/icons/trash.html' with ratio="1rem" %}
             </button>
             <button
               class="btn btn-secondry"
@@ -50,7 +50,7 @@
               hx-swap="outerHTML"
               title="تعديل {{ faculty.name }}"
             >
-              {% include 'includes/icons/pen.html' with ratio="1.25rem" %}
+              {% include 'includes/icons/pen.html' with ratio="1rem" %}
             </button>
           </div>
         </td>

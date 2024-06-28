@@ -4,8 +4,8 @@
   hx-post="{% url 'add-faculty' %}"
   hx-target="#faculties-table"
   hx-swap="outerHTML"
-  hx-on::submit="removeErrorList()"
-  hx-on::after-request="this.reset()"
+  hx-on:submit="removeErrorList()"
+  hx-on::after-request="document.getElementById('faculty-form-reset').click()"
 >
   <h1>إضافة كلية جديدة</h1>
   {{ form }}
@@ -16,21 +16,11 @@
     class="btn btn-success flex items-center gap-1" 
     title="إضافة"
     >
-      {% include 'includes/icons/floppy.html' with ratio="2rem" %}
+      {% include 'includes/icons/floppy.html' with ratio="1rem" %}
       <span>إضافة</span>
     </button>
 
-    <button 
-      type="reset" 
-      class="btn btn-secondry flex items-center gap-1" 
-      title="اعادة التعيين"
-      hx-get="{% url 'get-add-form' %}"
-      hx-target="#faculty-form"
-      hx-swap="outerHTML"
-    >
-      {% include 'includes/icons/reset.html' with ratio="1.5rem" %}
-      <span>إعادة تعيين</span>
-    </button>
+    {% include 'faculties/partials/reset-btn.html' %}
 
   </div>
 </form>

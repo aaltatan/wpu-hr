@@ -2,3 +2,6 @@ django
 django-htmx
 django-extensions
 django-filter
+xlwings
+pandas
+rich

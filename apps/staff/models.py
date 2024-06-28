@@ -21,6 +21,15 @@ class Staff(models.Model):
 
     class Meta:
         verbose_name_plural = 'Staff'
+        ordering = [
+            'faculty__name',
+            '-is_countable',
+            '-degree',
+            '-time',
+            'specialty',
+            '-is_staff',
+            'name',
+        ]
 
     name = models.CharField(max_length=255, unique=True, verbose_name='الإسم')
     faculty = models.ForeignKey(

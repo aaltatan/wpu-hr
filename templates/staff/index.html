@@ -1,33 +1,12 @@
-{% extends 'base.html' %}
-
-{% block title %}الهيئة التدريسية{% endblock %}
-
+{% extends 'base.html' %} 
+{% block title %}الهيئة التدريسية{% endblock %} 
 {% block body %}
 
-  <form 
-     class="form flex flex-wrap items-center gap-2 my-4 !shadow-none"
-     hx-get="{% url 'staff-table' %}"
-     hx-target="#staff-table"
-     hx-swap="outerHTML"
-     id="staff-filter-form"
-  >
+{% include 'staff/partials/filter-staff-form.html' %}
 
-    {{ filter_form }}
-    
-    <div class="flex">
-      <button class="btn btn-primary" type="submit">Filter</button>
-      <button class="btn btn-secondary" type="reset">Reset</button>
-    </div>
+<div class="relative grid grid-cols-3 gap-4">
+  <div class="col-span-1">{% include 'staff/partials/add-staff-form.html' %}</div>
+  <div class="col-span-2">{% include 'staff/partials/staff-table.html' %}</div>
+</div>
 
-  </form>
-
-  <div class="relative grid grid-cols-3 gap-4">
-    <div class="col-span-1">
-      {% include 'staff/partials/add-staff-form.html' %}
-    </div>
-    <div class="col-span-2">
-      {% include 'staff/partials/staff-table.html' %}
-    </div>
-  </div>
-  
 {% endblock %}

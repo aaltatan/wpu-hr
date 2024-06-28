@@ -1,27 +1,27 @@
 from django.views.decorators.http import require_POST, require_http_methods
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
-from django.urls import reverse
 from django_htmx.http import retarget
 from .. import messages as msgs
 from . import models, forms, filters
+from rich import print
 
 
 def index(request: HttpRequest) -> HttpResponse:
     
-    f = filters.StaffFilter(request.GET, queryset=models.Staff.objects.all())
-
     form = forms.StaffForm()
-    context = {'staff': f.qs, 'form': form, 'filter_form': f.form}
+    
+    qs = models.Staff.objects.all()
+    filtered_staff = filters.StaffFilter(request.GET, queryset=qs)
+    
+    context = {
+        'staff': filtered_staff.qs, 
+        'form': form, 
+        'filter_form': filtered_staff.form,
+    }
+    
     return render(request, 'staff/index.html', context)
-
-
-def get_staff_table(request: HttpRequest) -> HttpResponse:
-
-    f = filters.StaffFilter(request.GET, queryset=models.Staff.objects.all())
-    context = {'staff': f.qs}
-    return render(request, 'staff/partials/staff-table.html', context)
 
 
 def get_add_form(request: HttpRequest) -> HttpResponse:
@@ -69,9 +69,8 @@ def update_staff(request: HttpRequest, id: int) -> HttpResponse:
         form.save()
         messages.info(request, msgs.MESSAGES['success'], 'success')
         add_from = forms.StaffForm()
-        staff = models.Staff.objects.all()
-        context = {'form': add_from, 'staff': staff}
-        return render(request, 'staff/partials/staff-table.html', context)
+        context = {'form': add_from, 'stf': staff}
+        return render(request, 'staff/partials/table-row.html', context)
     else:
         context = {'form': form, 'stf': staff}
         response = render(request, 'staff/partials/update-staff-form.html', context)
@@ -84,11 +83,9 @@ def toggle_countable(request: HttpRequest, id: int) -> HttpResponse:
     staff.is_countable = not staff.is_countable
     staff.save()
 
-    print(request.GET)
-    print("#" * 100)
-
     messages.info(request, msgs.MESSAGES['success'], 'success')
+    
+    row_idx = request.headers.get('row-idx')
+    context = {'stf': staff, 'row_idx': row_idx}
 
-    staff = models.Staff.objects.all()
-
-    return redirect(reverse('staff-table'))
+    return render(request, 'staff/partials/table-row.html', context)
