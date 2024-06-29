@@ -26,7 +26,8 @@
       hx-target="#staff-{{ stf.id }}"
       hx-swap="outerHTML"
       hx-on::after-request="resetTableIdx();
-      document.getElementById('messages').click()"
+      document.getElementById('messages').click();
+      addEventListenersToDeleteBtns();"
       hx-headers='{"row-idx": {{ row_idx }}}'
       id="staff-countable-toggle-btn-{{ stf.id }}"
       title="{% if not stf.is_countable %}إحتساب{% else %}عدم إحتساب{% endif %} {{ stf.name }}"

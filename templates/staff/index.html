@@ -1,4 +1,5 @@
 {% extends 'base.html' %} 
+{% load static %}
 {% block title %}الهيئة التدريسية{% endblock %} 
 {% block body %}
 
@@ -9,4 +10,8 @@
   <div class="col-span-2">{% include 'staff/partials/staff-table.html' %}</div>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script defer src="{% static 'js/staff.js' %}"></script>
 {% endblock %}

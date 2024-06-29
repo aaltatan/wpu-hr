@@ -14,7 +14,7 @@ form.form {
   }
 
   & .helptext {
-    @apply absolute right-full -top-5 text-xs bg-slate-700 text-white p-3 rounded-md opacity-0 duration-150 text-center;
+    @apply absolute right-full -top-5 z-10 text-xs bg-slate-700 text-white p-3 rounded-md opacity-0 duration-150 text-center;
   }
 
   & .errorlist li {
@@ -87,6 +87,10 @@ div.context {
 
   }
 
+}
+
+#spinner.htmx-request {
+  @apply !flex;
 }
 
 ::-webkit-scrollbar-thumb {

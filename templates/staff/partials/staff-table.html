@@ -1,8 +1,5 @@
-<div class="relative">
-  <div
-    id="staff-table"
-    class="overflow-auto scroll-px-4 rounded-md h-[50vh] animate-fade border border-slate-200"
-  >
+<div class="relative" id="staff-table">
+  <div class="overflow-auto scroll-px-4 rounded-md h-[50vh] animate-fade border border-slate-200">
     <table class="custom-table relative">
       <thead class="sticky top-0 left-0 shadow-md z-10 bg-slate-100">
         <tr>
@@ -20,7 +17,7 @@
 
       <tbody>
         {% for stf in staff %} 
-        {% include 'staff/partials/table-row.html' %} 
+          {% include 'staff/partials/table-row.html' %} 
         {% endfor %}
       </tbody>
     </table>
@@ -29,21 +26,12 @@
       class="absolute top-[calc(100%+.5rem)] left-0 w-full px-2 py-1 text-xs tracking-tighter font-bold"
     >
       <div>
-        <span>{{ filtered_total }}</span>
+        <span id="filtered-total">{{ filtered_total }}</span>
         <span>من</span>
-        <span>{{ total }}</span>
+        <span id="total">{{ total }}</span>
         <span>عضو</span>
       </div>
     </div>
+    
   </div>
 </div>
-
-<script>
-  var deleteBtns = document.querySelectorAll('button[itemprop="delete"]');
-  deleteBtns.forEach((btn) => {
-    btn.addEventListener("htmx:afterRequest", () => {
-      document.getElementById("messages").click();
-      resetTableIdx();
-    });
-  });
-</script>

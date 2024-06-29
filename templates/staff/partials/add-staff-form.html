@@ -4,12 +4,13 @@
   hx-post="{% url 'add-staff' %}"
   hx-target="#staff-table"
   hx-swap="outerHTML"
+  hx-indicator="#spinner"
   hx-on:submit="removeErrorList()"
-  hx-on::after-request="
-  resetTableIdx();
+  hx-on::after-request="resetTableIdx();
   document.getElementById('staff-reset-btn').click();
   document.getElementById('staff-filter-form').reset();
-  document.getElementById('messages').click();"
+  document.getElementById('messages').click();
+  addEventListenersToDeleteBtns();"
 >
   <h1>إضافة عضو جديد</h1>
   {{ form }}

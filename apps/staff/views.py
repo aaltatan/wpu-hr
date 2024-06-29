@@ -1,7 +1,8 @@
 from django.views.decorators.http import require_POST, require_http_methods
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
+from django.urls import reverse
 from django_htmx.http import retarget
 from .. import messages as msgs
 from . import models, forms, filters
@@ -38,7 +39,11 @@ def add_staff(request: HttpRequest) -> HttpResponse:
         form.save()
         messages.info(request, msgs.MESSAGES['success'], 'success')
         staff = models.Staff.objects.all()
-        context = {'staff': staff}
+        context = {
+            'staff': staff, 
+            'filtered_total': staff.count(),
+            'total': staff.count(),
+        }
         return render(request, 'staff/partials/staff-table.html', context)
     else:
         context = {'form': form}

@@ -5,6 +5,7 @@
   hx-target="#faculties-table"
   hx-swap="outerHTML"
   hx-on:submit="removeErrorList()"
+  hx-on::after-request="document.getElementById('messages').click();"
 >
   <h1>{{ faculty.name }}</h1>
 
