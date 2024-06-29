@@ -13,7 +13,7 @@
         <th>نسبة الملاك الذي يجب تحقيقها</th>
         <th>عدد الطلاب المسموح به لكل مدرس</th>
         <th>عدد الطلاب حسب الاعتمادية (الملاك)</th>
-        <th>خيارات</th>
+        <th>#</th>
       </tr>
 
     </thead>
@@ -31,36 +31,10 @@
         <td>{{ faculty.ratio }}</td>
         <td>{{ faculty.ratio_count }}</td>
         <td>{{ faculty.ratio_staff_count }}</td>
-        <td>
-          <div class="flex items-center justify-center gap-1">
-            <button
-              class="btn btn-secondry"
-              hx-delete="{% url 'delete-faculty' id=faculty.id %}"
-              hx-confirm="هل تريد حذف كلية {{ faculty.name }}؟"
-              hx-target="closest tr"
-              hx-swap="outerHTML"
-              title="حذف {{ faculty.name }}"
-            >
-              {% include 'includes/icons/trash.html' with ratio="1rem" %}
-            </button>
-            <button
-              class="btn btn-secondry"
-              hx-get="{% url 'get-update-form' id=faculty.id %}"
-              hx-target="#faculty-form"
-              hx-swap="outerHTML"
-              title="تعديل {{ faculty.name }}"
-            >
-              {% include 'includes/icons/pen.html' with ratio="1rem" %}
-            </button>
-          </div>
-        </td>
+        <td>{% include 'faculties/partials/context-menu.html' %}</td>
       </tr>
       {% endfor %}
       
     </tbody>
   </table>
 </div>
-
-{% if messages %}
-  {% include 'includes/messages.html' %}
-{% endif %}

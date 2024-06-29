@@ -1,0 +1,39 @@
+<div class="context">
+  <button class="context__btn">
+    {% include 'includes/icons/dots.html' with ratio="1.25rem" %}
+  </button>
+  <div class="context__menu">
+    <button
+      hx-delete="{% url 'delete-staff' id=stf.id %}"
+      hx-confirm="هل تريد حذف العضو {{ stf.name }}؟"
+      hx-target="closest tr"
+      hx-swap="outerHTML"
+      title="حذف {{ stf.name }}"
+      itemprop="delete"
+    >
+      <span>حذف</span>
+    </button>
+    <button
+      hx-get="{% url 'get-update-staff-form' id=stf.id %}"
+      hx-target="#staff-form"
+      hx-swap="outerHTML"
+      title="تعديل {{ stf.name }}"
+    >
+      <span>تعديل</span>
+    </button>
+    <button
+      hx-get="{% url 'toggle-countable-staff' id=stf.id %}"
+      hx-target="#staff-{{ stf.id }}"
+      hx-swap="outerHTML"
+      hx-on::after-request="resetTableIdx();
+      document.getElementById('messages').click()"
+      hx-headers='{"row-idx": {{ row_idx }}}'
+      id="staff-countable-toggle-btn-{{ stf.id }}"
+      title="{% if not stf.is_countable %}إحتساب{% else %}عدم إحتساب{% endif %} {{ stf.name }}"
+    >
+      <span
+        >{% if not stf.is_countable %}إحتساب{% else %}عدم إحتساب{% endif %}</span
+      >
+    </button>
+  </div>
+</div>

@@ -7,15 +7,17 @@
   hx-on::after-request="resetTableIdx()"
   id="staff-filter-form"
 >
-  <div class="grid grid-cols-4 gap-2">{{ filter_form }}</div>
+  <div class="grid grid-cols-7 gap-2">{{ filter_form }}</div>
 
   <div class="flex items-center justify-center gap-1 my-4">
+
     <button class="btn btn-primary flex items-center gap-1" type="submit">
       <span>
         {% include 'includes/icons/filter.html' with ratio="1rem" %}
       </span>
       <span>تصفية</span>
     </button>
+
     <button
       class="btn btn-secondry flex items-center gap-1"
       hx-get="{% url 'staff-index' %}"
@@ -29,5 +31,6 @@
       </span>
       <span>إعادة تعيين</span>
     </button>
+    
   </div>
 </form>

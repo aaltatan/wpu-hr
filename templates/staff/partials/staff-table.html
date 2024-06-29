@@ -1,24 +1,49 @@
-<div
-  id="staff-table"
-  class="overflow-auto scroll-px-4 rounded-md h-[60vh] animate-fade border border-slate-200"
->
-  <table class="custom-table relative">
-    <thead class="sticky top-0 left-0 shadow-md z-10 bg-slate-100">
-      <tr>
-        <th>#</th>
-        <th>الاسم</th>
-        <th>الكلية</th>
-        <th>الاختصاص</th>
-        <th>الدرجة العلمية</th>
-        <th>التفرغ</th>
-        <th>ملاك</th>
-        <th>يحتسب</th>
-        <th>الخيارات</th>
-      </tr>
-    </thead>
+<div class="relative">
+  <div
+    id="staff-table"
+    class="overflow-auto scroll-px-4 rounded-md h-[50vh] animate-fade border border-slate-200"
+  >
+    <table class="custom-table relative">
+      <thead class="sticky top-0 left-0 shadow-md z-10 bg-slate-100">
+        <tr>
+          <th>#</th>
+          <th>الاسم</th>
+          <th>الكلية</th>
+          <th>الاختصاص</th>
+          <th>الدرجة العلمية</th>
+          <th>التفرغ</th>
+          <th>ملاك</th>
+          <th>يحتسب</th>
+          <th>#</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      {% for stf in staff %} {% include 'staff/partials/table-row.html' %} {% endfor %}
-    </tbody>
-  </table>
+      <tbody>
+        {% for stf in staff %} 
+        {% include 'staff/partials/table-row.html' %} 
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div
+      class="absolute top-[calc(100%+.5rem)] left-0 w-full px-2 py-1 text-xs tracking-tighter font-bold"
+    >
+      <div>
+        <span>{{ filtered_total }}</span>
+        <span>من</span>
+        <span>{{ total }}</span>
+        <span>عضو</span>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  var deleteBtns = document.querySelectorAll('button[itemprop="delete"]');
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener("htmx:afterRequest", () => {
+      document.getElementById("messages").click();
+      resetTableIdx();
+    });
+  });
+</script>

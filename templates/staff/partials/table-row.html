@@ -8,48 +8,7 @@
   <td>{{ stf.specialty }}</td>
   <td>{{ stf.degree }}</td>
   <td>{{ stf.time }}</td>
-  <td>{% if stf.is_staff %} ✅ {% else %} ❌ {% endif %}</td>
-  <td>{% if stf.is_countable %} ✅ {% else %} ❌ {% endif %}</td>
-  <td>
-    <div class="relative group/context">
-      <button class="rounded-full p-1 hover:bg-slate-300">
-        {% include 'includes/icons/dots.html' with ratio="1.25rem" %}
-      </button>
-      <div class="absolute top-0 left-full flex justify-center flex-col divide-y bg-white border border-slate-200 divide-slate-200 scale-y-0 group-hover/context:scale-y-100 transition-transform w-36 rounded-md">
-        <button
-          class="px-2 py-1 hover:bg-slate-200"
-          hx-delete="{% url 'delete-staff' id=stf.id %}"
-          hx-confirm="هل تريد حذف العضو {{ stf.name }}؟"
-          hx-target="closest tr"
-          hx-swap="outerHTML"
-          title="حذف {{ stf.name }}"
-        >
-          <span>حذف</span>
-        </button>
-        <button
-          class="px-2 py-1 hover:bg-slate-200"
-          hx-get="{% url 'get-update-staff-form' id=stf.id %}"
-          hx-target="#staff-form"
-          hx-swap="outerHTML"
-          title="تعديل {{ stf.name }}"
-        >
-          <span>تعديل</span>
-        </button>
-        <button
-          hx-get="{% url 'toggle-countable-staff' id=stf.id %}"
-          hx-target="#staff-{{ stf.id }}"
-          hx-swap="outerHTML"
-          hx-on::after-request="resetTableIdx()"
-          hx-headers='{"row-idx": {{ row_idx }}}'
-          id="staff-countable-toggle-btn-{{ stf.id }}"
-          class="px-2 py-1 hover:bg-slate-200"
-          title="{% if not stf.is_countable %}إحتساب{% else %}عدم إحتساب{% endif %} {{ stf.name }}"
-        >
-          <span
-            >{% if not stf.is_countable %}إحتساب{% else %}عدم إحتساب{% endif %}</span
-          >
-        </button>
-      </div>
-    </div>
-  </td>
+  <td>{% if stf.is_staff %}✅{% else %}❌{% endif %}</td>
+  <td>{% if stf.is_countable %}✅{% else %}❌{% endif %}</td>
+  <td>{% include 'staff/partials/context-menu.html' %}</td>
 </tr>

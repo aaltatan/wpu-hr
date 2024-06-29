@@ -5,7 +5,8 @@
   hx-target="#staff-{{ stf.id }}"
   hx-swap="outerHTML"
   hx-on:submit="removeErrorList()"
-  hx-on::after-request="resetTableIdx()"
+  hx-on::after-request="resetTableIdx();
+  document.getElementById('messages').click();"
 >
   <h1>{{ stf.name }}</h1>
 

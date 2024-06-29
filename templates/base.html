@@ -20,7 +20,7 @@
 
   <body dir="rtl" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
-    <ul id="messages"></ul>
+    {% include 'includes/messages.html' %}
     
     {% include 'includes/navbar.html' %}
     <main class="p-4 mb-12 w-[min(100%,1200px)] mx-auto">

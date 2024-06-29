@@ -11,7 +11,6 @@ from rich import print
 def index(request: HttpRequest) -> HttpResponse:
     
     form = forms.StaffForm()
-    
     qs = models.Staff.objects.all()
     filtered_staff = filters.StaffFilter(request.GET, queryset=qs)
     
@@ -19,6 +18,8 @@ def index(request: HttpRequest) -> HttpResponse:
         'staff': filtered_staff.qs, 
         'form': form, 
         'filter_form': filtered_staff.form,
+        'filtered_total': filtered_staff.qs.count(),
+        'total': qs.count(),
     }
     
     return render(request, 'staff/index.html', context)
@@ -50,7 +51,7 @@ def delete_staff(request: HttpRequest, id: int) -> HttpResponse:
     staff = get_object_or_404(models.Staff, id=id)
     staff.delete()
     messages.info(request, msgs.MESSAGES['success'], 'success')
-    return render(request, 'includes/messages.html')
+    return HttpResponse('')
 
 
 def get_update_form(request: HttpRequest, id: int) -> HttpResponse:

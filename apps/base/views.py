@@ -7,3 +7,10 @@ def index(request: HttpRequest) -> HttpResponse:
         request=request,
         template_name='base/index.html'
     )
+
+
+def get_messages(request: HttpRequest) -> HttpResponse:
+    return render(
+        request=request,
+        template_name='includes/messages.html'
+    )

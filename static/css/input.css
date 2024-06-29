@@ -65,6 +65,30 @@ table.custom-table {
   }
 }
 
+div.context {
+
+  @apply relative;
+
+  &:hover .context__menu{
+    @apply !scale-y-100;
+  }
+
+  & .context__btn {
+    @apply rounded-full p-1 hover:bg-slate-300 ;
+  }
+
+  & .context__menu {
+
+    @apply absolute top-0 left-full flex justify-center flex-col divide-y bg-white border border-slate-200 divide-slate-200 scale-y-0 transition-transform w-36 rounded-md shadow-md;
+
+    & button {
+      @apply px-2 py-1 hover:bg-slate-200;
+    }
+
+  }
+
+}
+
 ::-webkit-scrollbar-thumb {
   @apply rounded-md bg-orange-500;
 }
