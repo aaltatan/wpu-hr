@@ -1,4 +1,4 @@
-<div id="faculties-table" class="overflow-auto animate-fade">
+<div id="faculties-table" class="overflow-auto animate-fade rounded-md border border-slate-200">
   <table class="custom-table">
 
     <thead>
@@ -38,3 +38,21 @@
     </tbody>
   </table>
 </div>
+
+
+<script>
+
+  addEventListenersToDeleteBtns();
+
+  function addEventListenersToDeleteBtns() {
+    const event = "htmx:afterRequest";
+    const listener = () => {
+      document.getElementById("messages").click();
+    };
+    var deleteBtns = document.querySelectorAll('button[itemprop="delete"]');
+    deleteBtns.forEach((btn) => {
+      btn.removeEventListener(event, listener);
+      btn.addEventListener(event, listener);
+    });
+  }
+</script>

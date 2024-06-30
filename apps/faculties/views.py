@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.decorators.http import require_POST, require_http_methods
+from django.urls import reverse
 from django_htmx.http import retarget
 from django.contrib import messages
 from .. import messages as msgs
@@ -29,6 +30,7 @@ def add_faculty(request: HttpRequest) -> HttpResponse:
     if form.is_valid():
         form.save()
         messages.info(request, msgs.MESSAGES['success'], 'success')
+        # return redirect(reverse('faculties-index'))
         faculties = models.Faculty.objects.all()
         context = {'faculties': faculties}
         return render(request, 'faculties/partials/faculties-table.html', context)
@@ -44,14 +46,13 @@ def delete_faculty(request: HttpRequest, id: int) -> HttpResponse:
 
     if faculty.staff.count():
         messages.info(request, msgs.MESSAGES['cannot_delete'], 'danger')
-        faculties = models.Faculty.objects.all()
-        context = {'faculties': faculties}
-        response = render(request, 'faculties/partials/faculties-table.html', context)
-        return retarget(response, '#faculties-table')
     else:
         faculty.delete()
         messages.info(request, msgs.MESSAGES['success'], 'success')
-        return render(request, 'includes/messages.html')
+
+    faculties = models.Faculty.objects.all()
+    context = {'faculties': faculties}
+    return render(request, 'faculties/partials/faculties-table.html', context)
 
 
 def get_update_form(request: HttpRequest, id: int) -> HttpResponse:

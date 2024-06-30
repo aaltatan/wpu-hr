@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 form.form {
   @apply p-4 border border-slate-200 rounded-md;
 
@@ -33,8 +34,27 @@ form.form {
     @apply text-sm my-1 duration-150 block;
   }
 
-  & > div:has(input[type="checkbox"]) {
-    @apply flex items-start gap-1 justify-center;
+  & div:has(input[type="checkbox"]) {
+    display: flex;
+    margin-block: 1em;
+  }
+  & input[type="checkbox"] {
+    position: relative;
+  }
+  & input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 2rem;
+    aspect-ratio: 2/1;
+    background-color: black;
+    border-radius: 100vmax;
+  }
+  & input[type="checkbox"]:checked::before {
+    background-color: red;
   }
 
   & input,
@@ -52,17 +72,24 @@ table.custom-table {
   }
 
   & tbody tr:hover {
-    @apply bg-slate-50;
+    @apply bg-slate-100;
   }
 
   & th,
   td {
-    @apply p-1 text-sm;
+    @apply px-1 py-3 text-sm;
   }
 
   & td {
-    @apply whitespace-nowrap border-t border-b border-slate-300 text-center;
+    @apply whitespace-nowrap border-t border-b border-slate-300 text-center text-slate-800;
   }
+}
+
+table.custom-table tbody tr:first-child .context .context__menu {
+  @apply top-0;
+}
+table.custom-table tbody tr:not(:first-child) .context .context__menu {
+  @apply bottom-0;
 }
 
 div.context {
@@ -79,7 +106,7 @@ div.context {
 
   & .context__menu {
 
-    @apply absolute top-0 left-full flex justify-center flex-col divide-y bg-white border border-slate-200 divide-slate-200 scale-y-0 transition-transform w-36 rounded-md shadow-md;
+    @apply absolute left-full flex justify-center flex-col divide-y bg-white border border-slate-200 divide-slate-200 transition-transform w-36 rounded-md shadow-md scale-y-0;
 
     & button {
       @apply px-2 py-1 hover:bg-slate-200;

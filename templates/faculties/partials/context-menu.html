@@ -7,7 +7,6 @@
       hx-get="{% url 'get-update-form' id=faculty.id %}"
       hx-target="#faculty-form"
       hx-swap="outerHTML"
-      hx-on::after-request="document.getElementById('messages').click();"
       title="تعديل {{ faculty.name }}"
     >
       تعديل
@@ -15,9 +14,10 @@
     <button
       hx-delete="{% url 'delete-faculty' id=faculty.id %}"
       hx-confirm="هل تريد حذف كلية {{ faculty.name }}؟"
-      hx-target="closest tr"
+      hx-target="#faculties-table"
       hx-swap="outerHTML"
       title="حذف {{ faculty.name }}"
+      itemprop="delete"
     >
       حذف
     </button>

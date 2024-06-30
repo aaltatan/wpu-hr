@@ -89,8 +89,6 @@ def toggle_countable(request: HttpRequest, id: int) -> HttpResponse:
     staff.is_countable = not staff.is_countable
     staff.save()
 
-    messages.info(request, msgs.MESSAGES['success'], 'success')
-    
     row_idx = request.headers.get('row-idx')
     context = {'stf': staff, 'row_idx': row_idx}
 

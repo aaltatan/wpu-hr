@@ -18,7 +18,11 @@
 
   </head>
 
-  <body dir="rtl" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <body
+    dir="rtl" 
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
+    hx-boost="true" 
+  >
     
     {% include 'includes/spinner.html' %}
     {% include 'includes/messages.html' %}

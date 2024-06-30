@@ -1,27 +1,30 @@
 resetTableIdx();
-addEventListenersToDeleteBtns();
+addEventListenersToBtns();
 
-function addEventListenersToDeleteBtns() {
+function addEventListenersToBtns() {
   const event = "htmx:afterRequest";
-  const listener = () => {
+
+  const deleteListener = () => {
     document.getElementById("messages").click();
     document.getElementById("staff-reset-btn").click();
     decreaseTotals();
     resetTableIdx();
   };
+
   var deleteBtns = document.querySelectorAll('button[itemprop="delete"]');
   deleteBtns.forEach((btn) => {
-    btn.removeEventListener(event, listener);
-    btn.addEventListener(event, listener);
+    btn.removeEventListener(event, deleteListener);
+    btn.addEventListener(event, deleteListener);
   });
+
 }
 
 function decreaseTotals() {
-  const filteredTotalSpan = document.getElementById('filtered-total');
-  const totalSpan = document.getElementById('total');
+  const filteredTotalSpan = document.getElementById("filtered-total");
+  const totalSpan = document.getElementById("total");
 
   let total = +totalSpan.innerHTML;
-  
+
   if (total > 0) {
     let newTotal = --total;
     totalSpan.innerHTML = newTotal;
