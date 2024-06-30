@@ -31,25 +31,25 @@ class Faculty(models.Model):
         help_text="عدد الطلاب دون الخريجين والمنح",
         verbose_name="عدد الطلاب",
     )
-    ratio_specialist_support = models.PositiveBigIntegerField(
+    supporters_percentage = models.PositiveBigIntegerField(
         default=30,
         validators=rate_validator,
         help_text='نسبة الداعم الى الاختصاصي',
         verbose_name='نسبة الداعم',
     )
-    ratio = models.PositiveBigIntegerField(
+    local_staff_percentage = models.PositiveBigIntegerField(
         default=50,
         validators=rate_validator,
         help_text='نسبة الملاك الذي يجب تحقيقها',
         verbose_name='نسبة الملاك الوزارة',
     )
-    ratio_count = models.PositiveBigIntegerField(
+    student_to_teacher_count = models.PositiveBigIntegerField(
         default=35,
         validators=count_validator,
         help_text='عدد الطلاب المسموح به لكل مدرس',
         verbose_name='عدد الطلاب لكل مدرس',
     )
-    ratio_staff_count = models.PositiveBigIntegerField(
+    student_to_local_teacher_count = models.PositiveBigIntegerField(
         default=20,
         validators=count_validator,
         help_text='عدد الطلاب حسب الاعتمادية (الملاك)',

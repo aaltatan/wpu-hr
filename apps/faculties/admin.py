@@ -9,10 +9,10 @@ class FacultyAdmin(admin.ModelAdmin):
         "count_of_scholarship_students",
         "count_of_graduates",
         "count_of_students",
-        "ratio",
-        "ratio_specialist_support",
-        "ratio_count",
-        "ratio_staff_count",
+        "local_staff_percentage",
+        "supporters_percentage",
+        "student_to_teacher_count",
+        "student_to_local_teacher_count",
     ]
     fields = [
         "name",
@@ -22,12 +22,12 @@ class FacultyAdmin(admin.ModelAdmin):
             "count_of_students",
         ),
         (
-            "ratio",
-            "ratio_specialist_support",
+            "local_staff_percentage",
+            "supporters_percentage",
         ),
         (
-            "ratio_count",
-            "ratio_staff_count",
+            "student_to_teacher_count",
+            "student_to_local_teacher_count",
         ),
     ]
     ordering = ["name"]

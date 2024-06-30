@@ -61,7 +61,7 @@ class Staff(models.Model):
         help_text='التفرغ جزئي ، كلي'
     )
     is_staff = models.BooleanField(
-        default=True,
+        default=False,
         verbose_name='ملاك',
         help_text='ضمن ملاك الجامعة الوطنية'
     )
