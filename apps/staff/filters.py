@@ -14,6 +14,6 @@ class StaffFilter(filters.FilterSet):
             "specialty",
             "degree",
             "time",
-            "is_staff",
+            "is_local",
             "is_countable",
         ]

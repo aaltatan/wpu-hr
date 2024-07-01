@@ -28,7 +28,7 @@ class Faculty(models.Model):
     count_of_students = models.PositiveBigIntegerField(
         default=0,
         validators=count_validator,
-        help_text="عدد الطلاب دون الخريجين والمنح",
+        help_text="عدد الطلاب متضمن الخريجين والمنح",
         verbose_name="عدد الطلاب",
     )
     supporters_percentage = models.PositiveBigIntegerField(

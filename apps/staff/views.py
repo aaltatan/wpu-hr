@@ -17,6 +17,7 @@ def index(request: HttpRequest) -> HttpResponse:
     
     context = {
         'staff': filtered_staff.qs, 
+        'instance': filtered_staff.qs.first(), 
         'form': form, 
         'filter_form': filtered_staff.form,
         'filtered_total': filtered_staff.qs.count(),

@@ -1,3 +1,5 @@
+{% load verbose_names %}
+
 <div id="faculties-table" class="overflow-auto animate-fade rounded-md border border-slate-200">
   <table class="custom-table">
 
@@ -5,14 +7,14 @@
 
       <tr>
         <th>#</th>
-        <th>الاسم</th>
-        <th>عدد طلاب المنح</th>
-        <th>عدد الخريجين</th>
-        <th>عدد الطلاب دون الخريجين والمنح</th>
-        <th>نسبة الداعم الى الاختصاصي</th>
-        <th>نسبة الملاك الذي يجب تحقيقها</th>
-        <th>عدد الطلاب المسموح به لكل مدرس</th>
-        <th>عدد الطلاب حسب الاعتمادية (الملاك)</th>
+        <td>{% get_verbose_field_name instance "name" %}</td>
+        <td>{% get_verbose_field_name instance "count_of_scholarship_students" %}</td>
+        <td>{% get_verbose_field_name instance "count_of_graduates" %}</td>
+        <td>{% get_verbose_field_name instance "count_of_students" %}</td>
+        <td>{% get_verbose_field_name instance "supporters_percentage" %}</td>
+        <td>{% get_verbose_field_name instance "local_staff_percentage" %}</td>
+        <td>{% get_verbose_field_name instance "student_to_teacher_count" %}</td>
+        <td>{% get_verbose_field_name instance "student_to_local_teacher_count" %}</td>
         <th>#</th>
       </tr>
 

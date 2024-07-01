@@ -27,7 +27,7 @@ class Staff(models.Model):
             '-degree',
             '-time',
             'specialty',
-            '-is_staff',
+            '-is_local',
             'name',
         ]
 
@@ -60,7 +60,7 @@ class Staff(models.Model):
         verbose_name='التفرغ',
         help_text='التفرغ جزئي ، كلي'
     )
-    is_staff = models.BooleanField(
+    is_local = models.BooleanField(
         default=False,
         verbose_name='ملاك',
         help_text='ضمن ملاك الجامعة الوطنية'

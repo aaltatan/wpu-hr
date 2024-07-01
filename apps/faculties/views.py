@@ -13,6 +13,7 @@ def index(request: HttpRequest) -> HttpResponse:
     form = forms.FacultyForm()
     context = {
         'faculties': faculties,
+        'instance': faculties.first(),
         'form': form,
     }
     return render(request, 'faculties/index.html', context)

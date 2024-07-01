@@ -8,7 +8,7 @@
   <td>{{ stf.specialty }}</td>
   <td>{{ stf.degree }}</td>
   <td>{{ stf.time }}</td>
-  <td>{% if stf.is_staff %}✅{% else %}❌{% endif %}</td>
+  <td>{% if stf.is_local %}✅{% else %}❌{% endif %}</td>
   <td>{% if stf.is_countable %}✅{% else %}❌{% endif %}</td>
   <td>{% include 'staff/partials/context-menu.html' %}</td>
 </tr>

@@ -10,7 +10,7 @@ class StaffAdmin(admin.ModelAdmin):
         "specialty",
         "degree",
         "time",
-        "is_staff",
+        "is_local",
         "is_countable",
     ]
     search_fields = ["name"]
@@ -18,14 +18,14 @@ class StaffAdmin(admin.ModelAdmin):
         "name",
         "faculty",
         ("specialty", "degree", "time"),
-        ("is_staff", "is_countable"),
+        ("is_local", "is_countable"),
     ]
     list_filter = [
         'faculty',
         'specialty',
         'degree',
         'time',
-        'is_staff',
+        'is_local',
         'is_countable',
     ]
     ordering = [
@@ -33,7 +33,7 @@ class StaffAdmin(admin.ModelAdmin):
         'specialty',
         'degree',
         '-time',
-        'is_staff',
+        'is_local',
         'is_countable',
         'name'
     ]

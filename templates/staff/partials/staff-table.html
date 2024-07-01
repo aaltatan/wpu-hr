@@ -1,16 +1,18 @@
+{% load verbose_names %}
+
 <div class="relative" id="staff-table">
   <div class="overflow-auto scroll-px-4 rounded-md h-[50vh] animate-fade border border-slate-200">
     <table class="custom-table relative">
       <thead class="sticky top-0 left-0 shadow-md z-10 bg-slate-100">
         <tr>
           <th>#</th>
-          <th>الاسم</th>
-          <th>الكلية</th>
-          <th>الاختصاص</th>
-          <th>الدرجة العلمية</th>
-          <th>التفرغ</th>
-          <th>ملاك</th>
-          <th>يحتسب</th>
+          <td>{% get_verbose_field_name instance "name" %}</td>
+          <td>{% get_verbose_field_name instance "faculty" %}</td>
+          <td>{% get_verbose_field_name instance "specialty" %}</td>
+          <td>{% get_verbose_field_name instance "degree" %}</td>
+          <td>{% get_verbose_field_name instance "time" %}</td>
+          <td>{% get_verbose_field_name instance "is_local" %}</td>
+          <td>{% get_verbose_field_name instance "is_countable" %}</td>
           <th>#</th>
         </tr>
       </thead>
