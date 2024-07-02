@@ -92,20 +92,6 @@ class FacultyController:
         """
         kwargs['is_countable'] = kwargs.get('is_countable', True)
         return self.faculty_model.staff.filter(**kwargs).count()
-    
-    def __get_local_staff_count(self, include_masters: bool = False) -> int:
-        local_phd_filters: dict[str, str] = {
-            "is_local": True,
-            "degree": self.degree_enum_model.PHD,
-        }
-        local_master_filters: dict[str, str] = { ###########
-            "is_local": True,
-            "degree": self.degree_enum_model.PHD,
-        }
-        local_phd_count = self.__get_staff_counts(**local_phd_filters)
-        local_master_count = self.__get_staff_counts(**local_master_filters)
-        local_master_count = self.__get_allowed_master_count(local_master_count)
-        return (local_phd_count + local_master_count) if include_masters else local_phd_count
 
     def __get_allowed_part_time_count(self) -> int:
         part_time_phd_count = self.part_time_phd_count
@@ -120,34 +106,58 @@ class FacultyController:
         return part_time_phd_specialist_count
     
     def __get_allowed_master_count(self, master_count: int) -> int:
-        return int(math.ceil(master_count / 2)) ########
+        return master_count / 2
     
     def __get_allowed_supporters_count(self, specialist_staff_count: int) -> int:
         allowed_supporter_count = specialist_staff_count * self.supporters_percentage
         allowed_supporter_count /= 100 - self.supporters_percentage
-        return math.ceil(allowed_supporter_count) ########
+        return math.floor(allowed_supporter_count)
     
     def get_current_students_count(self) -> int:
+        """
+        get current students count by this formula
+            current students count = count of students - count of scholarship students - count of graduates
+        Returns:
+            int: students count
+        """
         count_of_students = self.faculty_model.count_of_students
         count_of_scholarship_students =  self.faculty_model.count_of_scholarship_students
         count_of_graduates =  self.faculty_model.count_of_graduates
         return (
             count_of_students - count_of_scholarship_students - count_of_graduates
         )
+        
+    def get_local_staff_count(self, include_masters: bool = False) -> int:
+        local_phd_filters: dict[str, str] = {
+            "is_local": True,
+            "degree": self.degree_enum_model.PHD,
+        }
+        local_master_filters: dict[str, str] = {
+            "is_local": True,
+            "degree": self.degree_enum_model.MASTER,
+        }
+        local_phd_count = self.__get_staff_counts(**local_phd_filters)
+        local_master_count = self.__get_staff_counts(**local_master_filters)
+        local_master_count = self.__get_allowed_master_count(local_master_count)
+        return (local_phd_count + local_master_count) if include_masters else local_phd_count
     
     def get_required_local_staff_count(self) -> int:
         current_students_count = self.get_current_students_count()
-        local_staff_percentage = self.faculty_model.local_staff_percentage
+        # local_staff_percentage = self.faculty_model.local_staff_percentage
         student_to_local_teacher_count = self.faculty_model.student_to_local_teacher_count
         return (
             current_students_count / student_to_local_teacher_count / 2
         )
 
-    def get_capacity(self, respect_supporter_ratio: bool = False) -> int:
+    def get_capacity(
+        self, 
+        respect_supporter_percentage: bool = False,
+        respect_allowed_partial_count: bool = False, # to implement
+    ) -> float:
         
         fulltime_master_count = self.__get_allowed_master_count(self.fulltime_master_count)
         
-        if not respect_supporter_ratio:
+        if not respect_supporter_percentage:
             fulltime_phd_count = self.fulltime_phd_count
             part_time_phd_count = self.__get_allowed_part_time_count()
             staff_count = (
@@ -203,14 +213,14 @@ def run() -> None:
         )
 
         capacity_with_not_respect_supporter = controller.get_capacity()
-        get_current_students_count = controller.get_current_students_count()
+        capacity_with_respect_supporter = controller.get_capacity(respect_supporter_percentage=True)
         required_local_staff_count = controller.get_required_local_staff_count()
         
         print(
             f'{capacity_with_not_respect_supporter=}',
-            f'{get_current_students_count=}',
-            f'{required_local_staff_count=}',
+            f'{capacity_with_respect_supporter=}',
             sep='\n'
         )
+        
     
     
