@@ -104,8 +104,14 @@ class FacultyController:
         if self.fulltime_phd_specialist_count < part_time_phd_specialist_count:
             part_time_phd_specialist_count = self.fulltime_phd_specialist_count
         return part_time_phd_specialist_count
+
+    def __get_allowed_part_time_supporter_count(self) -> int:
+        part_time_phd_supporter_count = self.part_time_phd_supporter_count
+        if self.fulltime_phd_supporter_count < part_time_phd_supporter_count:
+            part_time_phd_supporter_count = self.fulltime_phd_supporter_count
+        return part_time_phd_supporter_count
     
-    def __get_allowed_master_count(self, master_count: int) -> int:
+    def __get_allowed_master_count(self, master_count: int) -> float:
         return master_count / 2
     
     def __get_allowed_supporters_count(self, specialist_staff_count: int) -> int:
@@ -141,7 +147,7 @@ class FacultyController:
         local_master_count = self.__get_allowed_master_count(local_master_count)
         return (local_phd_count + local_master_count) if include_masters else local_phd_count
     
-    def get_required_local_staff_count(self) -> int:
+    def get_required_local_staff_count(self) -> float:
         current_students_count = self.get_current_students_count()
         # local_staff_percentage = self.faculty_model.local_staff_percentage
         student_to_local_teacher_count = self.faculty_model.student_to_local_teacher_count
@@ -152,18 +158,32 @@ class FacultyController:
     def get_capacity(
         self, 
         respect_supporter_percentage: bool = False,
-        respect_allowed_partial_count: bool = False, # to implement
+        respect_allowed_supporter_partial_count: bool = True,
     ) -> float:
         
         fulltime_master_count = self.__get_allowed_master_count(self.fulltime_master_count)
         
         if not respect_supporter_percentage:
-            fulltime_phd_count = self.fulltime_phd_count
-            part_time_phd_count = self.__get_allowed_part_time_count()
-            staff_count = (
-                fulltime_phd_count + part_time_phd_count + fulltime_master_count
-            )
-            return staff_count * self.student_to_teacher_count
+            if not respect_allowed_supporter_partial_count:
+                fulltime_phd_count = self.fulltime_phd_count
+                part_time_phd_count = self.__get_allowed_part_time_count()
+                staff_count = (
+                    fulltime_phd_count + part_time_phd_count + fulltime_master_count
+                )
+                return staff_count * self.student_to_teacher_count
+            else:
+                fulltime_phd_specialist_count = self.fulltime_phd_specialist_count
+                part_time_phd_specialist_count = self.__get_allowed_part_time_specialist_count()
+                fulltime_phd_supporter_count = self.fulltime_phd_supporter_count
+                part_time_phd_supporter_count = self.__get_allowed_part_time_supporter_count()
+                staff_count = (
+                    fulltime_phd_specialist_count +
+                    part_time_phd_specialist_count +
+                    fulltime_phd_supporter_count +
+                    part_time_phd_supporter_count +
+                    fulltime_master_count
+                )
+                return staff_count * self.student_to_teacher_count
 
         fulltime_phd_specialist_count = self.fulltime_phd_specialist_count
         part_time_phd_specialist_count = self.__get_allowed_part_time_specialist_count()
@@ -177,7 +197,6 @@ class FacultyController:
         fulltime_phd_supporter_count = self.fulltime_phd_supporter_count
         part_time_phd_supporter_count = 0
         
-        ########
         if fulltime_phd_supporter_count >= allowed_supporter_count:
             fulltime_phd_supporter_count = allowed_supporter_count
         else:
@@ -189,7 +208,6 @@ class FacultyController:
         supporter_staff_count = (
             fulltime_phd_supporter_count + part_time_phd_supporter_count
         )
-        ########
         
         staff_count = supporter_staff_count + specialist_staff_count
         
@@ -212,12 +230,15 @@ def run() -> None:
             time_enum_model=staff_models.Time,
         )
 
-        capacity_with_not_respect_supporter = controller.get_capacity()
+        capacity_with_not_respect_supporter_and_respect_partial = controller.get_capacity()
+        capacity_with_not_respect_supporter_and_not_respect_partial = controller.get_capacity(
+            respect_allowed_supporter_partial_count=False
+        )
         capacity_with_respect_supporter = controller.get_capacity(respect_supporter_percentage=True)
-        required_local_staff_count = controller.get_required_local_staff_count()
         
         print(
-            f'{capacity_with_not_respect_supporter=}',
+            f'{capacity_with_not_respect_supporter_and_respect_partial=}',
+            f'{capacity_with_not_respect_supporter_and_not_respect_partial=}',
             f'{capacity_with_respect_supporter=}',
             sep='\n'
         )
