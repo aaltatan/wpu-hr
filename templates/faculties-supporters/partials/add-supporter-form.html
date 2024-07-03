@@ -1,14 +1,14 @@
 <form
   class="form animate-fade"
-  id="faculty-form"
-  hx-post="{% url 'add-faculty' %}"
-  hx-target="#faculties-table"
+  id="supporter-form"
+  hx-post="{% url 'add-supporter' %}"
+  hx-target="#supporters-table"
   hx-swap="outerHTML"
   hx-on:submit="removeErrorList()"
   hx-on::after-request="document.getElementById('messages').click();"
-  hx-on::after-swap="document.getElementById('faculty-form-reset').click()"
+  hx-on::after-swap="document.getElementById('supporter-form-reset').click()"
 >
-  <h1>إضافة كلية جديدة</h1>
+  <h1>إضافة اختصاص جديد</h1>
   {{ form }}
   <div class="flex item-center justify-center gap-1 my-8">
 
@@ -21,7 +21,7 @@
       <span>إضافة</span>
     </button>
 
-    {% include 'faculties/partials/reset-btn.html' %}
+    {% include 'faculties-supporters/partials/reset-btn.html' %}
 
   </div>
 </form>

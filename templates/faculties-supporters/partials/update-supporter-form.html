@@ -1,0 +1,36 @@
+<form
+  class="form animate-fade"
+  id="supporter-form"
+  hx-post="{% url 'update-supporter' id=supporter.id %}"
+  hx-target="#supporters-table"
+  hx-swap="outerHTML"
+  hx-on:submit="removeErrorList()"
+  hx-on::after-request="document.getElementById('messages').click();"
+>
+  <h1>{{ supporter.name }}</h1>
+
+  {{ form }}
+  
+  <div class="flex item-center justify-center gap-1 my-8 text-sm">
+
+    <button type="submit" class="btn btn-success flex items-center gap-1" title="تحديث">
+      {% include 'includes/icons/pen.html' with ratio="1rem" %}
+      <span>تحديث</span>
+    </button>
+
+    <button
+      type="submit"
+      hx-post="{% url 'get-add-form' %}"
+      hx-target="#supporter-form"
+      hx-swap="outerHTML"
+      class="btn btn-primary flex items-center gap-1"
+      title="إضافة كلية جديدة"
+    >
+      {% include 'includes/icons/plus.html' with ratio="1rem" %}
+      <span>إضافة كلية</span>
+    </button>
+
+    {% include 'faculties-supporters/partials/reset-btn.html' %}
+
+  </div>
+</form>

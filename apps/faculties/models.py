@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-count_validator = [MinValueValidator(0, 'count must be more than 0')]
+
+count_validator = [ MinValueValidator(0, 'count must be more than 0') ]
 rate_validator = [
     MinValueValidator(0, 'count must be more than 0'),
     MaxValueValidator(100, 'count must be less than 100'),

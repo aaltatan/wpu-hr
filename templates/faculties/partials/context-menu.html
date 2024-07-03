@@ -15,6 +15,7 @@
       hx-delete="{% url 'delete-faculty' id=faculty.id %}"
       hx-confirm="هل تريد حذف كلية {{ faculty.name }}؟"
       hx-target="#faculties-table"
+      hx-select="#faculties-table"
       hx-swap="outerHTML"
       title="حذف {{ faculty.name }}"
       itemprop="delete"

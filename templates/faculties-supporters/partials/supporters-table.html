@@ -1,0 +1,52 @@
+{% load verbose_names %}
+
+<div id="supporters-table" class="overflow-auto animate-fade rounded-md border border-slate-200">
+  {% if supporters %}
+  <table class="custom-table">
+
+    <thead>
+
+      <tr>
+        <th>#</th>
+        <td>{% get_verbose_field_name instance.faculty "name" %}</td>
+        <td>{% get_verbose_field_name instance "name" %}</td>
+        <td>{% get_verbose_field_name instance "percentage" %}</td>
+        <th>#</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      {% for supporter in supporters %}
+      <tr id="supporter-{{ supporter.id }}" class="animate-fade">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ supporter.faculty.name }}</td>
+        <td>{{ supporter.name }}</td>
+        <td>{{ supporter.percentage }}</td>
+        <td>{% include 'faculties-supporters/partials/context-menu.html' %}</td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+
+
+<script>
+
+  addEventListenersToDeleteBtns();
+
+  function addEventListenersToDeleteBtns() {
+    const event = "htmx:afterRequest";
+    const listener = () => {
+      document.getElementById("messages").click();
+    };
+    var deleteBtns = document.querySelectorAll('button[itemprop="delete"]');
+    deleteBtns.forEach((btn) => {
+      btn.removeEventListener(event, listener);
+      btn.addEventListener(event, listener);
+    });
+  }
+</script>

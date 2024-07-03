@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from django.views.decorators.http import require_POST, require_http_methods
 from django.urls import reverse
-from django_htmx.http import retarget
+from django_htmx.http import retarget, HttpResponseLocation
 from django.contrib import messages
 from .. import messages as msgs
 from . import models, forms
@@ -31,10 +31,7 @@ def add_faculty(request: HttpRequest) -> HttpResponse:
     if form.is_valid():
         form.save()
         messages.info(request, msgs.MESSAGES['success'], 'success')
-        # return redirect(reverse('faculties-index'))
-        faculties = models.Faculty.objects.all()
-        context = {'faculties': faculties}
-        return render(request, 'faculties/partials/faculties-table.html', context)
+        return HttpResponseLocation(reverse('faculties-index'))
     else:
         context = {'form': form}
         response = render(request, 'faculties/partials/add-faculty-form.html', context)
@@ -51,9 +48,7 @@ def delete_faculty(request: HttpRequest, id: int) -> HttpResponse:
         faculty.delete()
         messages.info(request, msgs.MESSAGES['success'], 'success')
 
-    faculties = models.Faculty.objects.all()
-    context = {'faculties': faculties}
-    return render(request, 'faculties/partials/faculties-table.html', context)
+    return HttpResponseLocation(reverse('faculties-index'))
 
 
 def get_update_form(request: HttpRequest, id: int) -> HttpResponse:
@@ -71,10 +66,7 @@ def update_faculty(request: HttpRequest, id: int) -> HttpResponse:
     if form.is_valid():
         form.save()
         messages.info(request, msgs.MESSAGES['success'], 'success')
-        add_from = forms.FacultyForm()
-        faculties = models.Faculty.objects.all()
-        context = {'form': add_from, 'faculties': faculties}
-        return render(request, 'faculties/partials/faculties-table.html', context)
+        return HttpResponseLocation(reverse('faculties-index'))
     else:
         context = {'form': form, 'faculty': faculty}
         response = render(request, 'faculties/partials/update-faculty-form.html', context)

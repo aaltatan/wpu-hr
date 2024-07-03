@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}الاختصاصات{% endblock %}
+
+{% block body %}
+
+  <div class="relative grid grid-cols-3 gap-4">
+    <div class="col-span-1">
+      {% include 'faculties-supporters/partials/add-supporter-form.html' %}
+    </div>
+    <div class="col-span-2">
+      {% include 'faculties-supporters/partials/supporters-table.html' %}
+    </div>
+  </div>
+  
+{% endblock %}

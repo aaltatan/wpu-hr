@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # apps
     'apps.base',
     'apps.faculties',
+    'apps.faculties_supporters',
     'apps.staff',
 ]
 

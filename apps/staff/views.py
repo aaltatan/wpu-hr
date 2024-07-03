@@ -1,12 +1,11 @@
 from django.views.decorators.http import require_POST, require_http_methods
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
 from django.urls import reverse
-from django_htmx.http import retarget
+from django_htmx.http import retarget, HttpResponseLocation
 from .. import messages as msgs
 from . import models, forms, filters
-from rich import print
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -39,13 +38,7 @@ def add_staff(request: HttpRequest) -> HttpResponse:
     if form.is_valid():
         form.save()
         messages.info(request, msgs.MESSAGES['success'], 'success')
-        staff = models.Staff.objects.all()
-        context = {
-            'staff': staff, 
-            'filtered_total': staff.count(),
-            'total': staff.count(),
-        }
-        return render(request, 'staff/partials/staff-table.html', context)
+        return HttpResponseLocation(reverse('staff-index'))
     else:
         context = {'form': form}
         response = render(request, 'staff/partials/add-staff-form.html', context)
