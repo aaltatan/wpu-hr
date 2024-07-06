@@ -1,5 +1,5 @@
 from django.db import models
-from ..faculties import models as faculties_models
+from ..specialties import models as specialties_models
 
 
 class Time(models.TextChoices):
@@ -12,39 +12,26 @@ class Degree(models.TextChoices):
     MASTER = "ماستر"
 
 
-class Specialty(models.TextChoices):
-    SPECIALIST = "اختصاصي"
-    SUPPORTER = "داعم"
-
-
 class Staff(models.Model):
 
     class Meta:
         verbose_name_plural = 'Staff'
         ordering = [
-            'faculty__name',
+            'specialty',
             '-is_countable',
             '-degree',
             '-time',
-            'specialty',
             '-is_local',
             'name',
         ]
 
     name = models.CharField(max_length=255, unique=True, verbose_name='الإسم')
-    faculty = models.ForeignKey(
-        faculties_models.Faculty,
+    specialty = models.ForeignKey(
+        specialties_models.Specialty,
         on_delete=models.PROTECT,
         related_name='staff',
-        verbose_name='الكلية',
-        help_text='الكلية'
-    )
-    specialty = models.CharField(
-        max_length=255, 
-        choices=Specialty.choices,
-        default=Specialty.SPECIALIST,
-        verbose_name='التخصص',
-        help_text='التخصص اختصاصي، داعم'
+        verbose_name='الاختصاص',
+        help_text='الاختصاص ضمن الكلية الواحدة'
     )
     degree = models.CharField(
         max_length=255, 
@@ -76,6 +63,6 @@ class Staff(models.Model):
         blank=True,
         verbose_name='ملاحظات'
     )
-
+    
     def __str__(self) -> str:
-        return f'{self.name} | {self.faculty.name}'
+        return f'{self.name} - {self.specialty.faculty.name}'

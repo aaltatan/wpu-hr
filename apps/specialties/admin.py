@@ -1,14 +1,14 @@
 from django.contrib import admin
 from . import models
-# Register your models here.
 
 
-@admin.register(models.FacultySupporter)
-class FacultySupporterAdmin(admin.ModelAdmin):
+@admin.register(models.Specialty)
+class SpecialtyAdmin(admin.ModelAdmin):
     list_display = [
         'faculty',
         'name',
         'percentage',
+        'is_specialist',
     ]
     
     ordering = ['faculty']

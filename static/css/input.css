@@ -58,20 +58,72 @@ table.custom-table {
 
   & th,
   td {
-    @apply px-1 py-3 text-sm;
+    @apply p-1 text-sm;
   }
 
   & td {
     @apply whitespace-nowrap border-t border-b border-slate-300 text-center text-slate-800;
   }
+
+  & tbody tr:first-child .context .context__menu {
+    @apply top-0;
+  }
+
+  & tbody tr:not(:first-child) .context .context__menu {
+    @apply bottom-0;
+  }
 }
 
-table.custom-table tbody tr:first-child .context .context__menu {
-  @apply top-0;
+
+.login {
+  @apply min-h-screen my-2 py-1 px-4 w-[min(100%,50ch)] mx-auto;
+
+  & .login__header {
+    @apply text-center my-2;
+    h1 {
+      @apply tracking-tighter text-3xl uppercase;
+    }
+    p {
+      @apply text-sm text-slate-500 font-light;
+    }
+  }
+
+  & .errorlist {
+    @apply my-2;
+    li {
+      @apply py-2 px-4 bg-orange-100 text-orange-700 text-balance rounded-md;
+    }
+  }
+
+  & form > div {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    margin-block: .5em;
+  }
+
+  & form > div > input {
+    padding: .75em 1em;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    @apply bg-slate-50 shadow-inner rounded-md focus:ring-2 ring-orange-500;
+  }
+  
+  & form > div > label {
+    font-weight: bold;
+    letter-spacing: -1px;
+  }
+  
+  & form input[type="submit"] {
+    @apply btn btn-primary w-full py-4 px-4 my-4;
+  }
 }
-table.custom-table tbody tr:not(:first-child) .context .context__menu {
-  @apply bottom-0;
-}
+
+
+
+
 
 div.context {
 

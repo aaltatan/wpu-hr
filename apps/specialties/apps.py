@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class FacultiesSupportersConfig(AppConfig):
+class SpecialtiesConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.faculties_supporters"
+    name = "apps.specialties"

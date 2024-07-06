@@ -1,13 +1,16 @@
 <tr
   id="staff-{{ stf.id }}"
   class="animate-fade {% if not stf.is_countable %} bg-red-200 hover:!bg-red-300 {% endif %}"
+  title="{% if stf.specialty.is_specialist %}اختصاصي{% else %}داعم{% endif %}
+{% if stf.is_local %}ملاك{% else %}خارج الملاك{% endif %}"
 >
   <td class="row-idx">{{ row_idx }}</td>
   <td>{{ stf.name }}</td>
-  <td>{{ stf.faculty }}</td>
-  <td>{{ stf.specialty }}</td>
+  <td>{{ stf.specialty.faculty }}</td>
+  <td>{{ stf.specialty.name }}</td>
   <td>{{ stf.degree }}</td>
   <td>{{ stf.time }}</td>
+  <td>{% if stf.specialty.is_specialist %}✅{% else %}❌{% endif %}</td>
   <td>{% if stf.is_local %}✅{% else %}❌{% endif %}</td>
   <td>{% if stf.is_countable %}✅{% else %}❌{% endif %}</td>
   <td>{% include 'staff/partials/context-menu.html' %}</td>

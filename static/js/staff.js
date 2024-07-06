@@ -17,6 +17,12 @@ function addEventListenersToBtns() {
     btn.addEventListener(event, deleteListener);
   });
 
+  var navigationBtns = document.querySelectorAll('button[role="navigation"]');
+  navigationBtns.forEach((btn) => {
+    btn.removeEventListener(event, resetTableIdx);
+    btn.addEventListener(event, resetTableIdx);
+  });
+
 }
 
 function decreaseTotals() {
@@ -24,11 +30,14 @@ function decreaseTotals() {
   const totalSpan = document.getElementById("total");
 
   let total = +totalSpan.innerHTML;
+  let filteredTotal = +filteredTotalSpan.innerHTML;
 
   if (total > 0) {
-    let newTotal = --total;
-    totalSpan.innerHTML = newTotal;
-    filteredTotalSpan.innerHTML = newTotal;
+    total = total - 1;
+    filteredTotal = filteredTotal - 1;
+
+    totalSpan.innerHTML = total;
+    filteredTotalSpan.innerHTML = filteredTotal;
   }
 }
 

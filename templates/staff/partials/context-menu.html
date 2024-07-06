@@ -16,7 +16,7 @@
     <button
       hx-get="{% url 'get-update-staff-form' id=stf.id %}"
       hx-target="#staff-form"
-      hx-swap="outerHTML"
+      hx-swap="outerHTML show:#staff-form:bottom"
       title="تعديل {{ stf.name }}"
     >
       <span>تعديل</span>

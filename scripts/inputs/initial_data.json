@@ -1,0 +1,46 @@
+{
+  "Architecture": {
+    "name": "هندسة العمارة والتخطيط العمراني",
+    "specialties": [
+        {"name": "تخصصي", "percentage": 65, "is_specialist": true},
+        {"name": "داعم", "percentage": 35, "is_specialist": false}
+    ]  
+  },
+  "Civil": {
+    "name": "الهندسة المدنية",
+    "specialties": [
+        {"name": "تخصصي", "percentage": 65, "is_specialist": true},
+        {"name": "داعم", "percentage": 35, "is_specialist": false}
+    ]  
+  },
+  "Dentistry": {
+    "name": "طب الأسنان",
+    "specialties": [
+        {"name": "طب الأسنان", "percentage": 65, "is_specialist": true},
+        {"name": "الطب البشري", "percentage": 20, "is_specialist": false},
+        {"name": "العلوم", "percentage": 15, "is_specialist": false}
+    ]  
+  },
+  "Engineering": {
+    "name": "الهندسة المعلوماتية",
+    "specialties": [
+        {"name": "تخصصي", "percentage": 65, "is_specialist": true},
+        {"name": "داعم", "percentage": 35, "is_specialist": false}
+    ]  
+  },
+  "Management": {
+    "name": "العلوم الإدارية والمالية",
+    "specialties": [
+        {"name": "تخصصي", "percentage": 65, "is_specialist": true},
+        {"name": "داعم", "percentage": 35, "is_specialist": false}
+    ]  
+  },
+  "Pharmacy": {
+    "name": "الصيدلة",
+    "specialties": [
+        {"name": "الصيدلة", "percentage": 65, "is_specialist": true},
+        {"name": "الكيمياء", "percentage": 25, "is_specialist": false},
+        {"name": "الطب البشري", "percentage": 10, "is_specialist": false}
+    ]  
+  }
+}

@@ -1,12 +1,11 @@
 <form
   class="form animate-fade"
-  id="supporter-form"
-  hx-post="{% url 'add-supporter' %}"
-  hx-target="#supporters-table"
+  id="specialty-form"
+  hx-post="{% url 'add-specialty' %}"
+  hx-target="#specialties-table"
   hx-swap="outerHTML"
   hx-on:submit="removeErrorList()"
-  hx-on::after-request="document.getElementById('messages').click();"
-  hx-on::after-swap="document.getElementById('supporter-form-reset').click()"
+  hx-on::after-swap="document.getElementById('specialty-form-reset').click()"
 >
   <h1>إضافة اختصاص جديد</h1>
   {{ form }}
@@ -21,7 +20,7 @@
       <span>إضافة</span>
     </button>
 
-    {% include 'faculties-supporters/partials/reset-btn.html' %}
+    {% include 'specialties/partials/reset-btn.html' %}
 
   </div>
 </form>

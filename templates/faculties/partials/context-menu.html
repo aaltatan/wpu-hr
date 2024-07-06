@@ -4,9 +4,9 @@
   </button>
   <div class="context__menu">
     <button
-      hx-get="{% url 'get-update-form' id=faculty.id %}"
+      hx-get="{% url 'get-update-faculty-form' id=faculty.id %}"
       hx-target="#faculty-form"
-      hx-swap="outerHTML"
+      hx-swap="outerHTML  show:top"
       title="تعديل {{ faculty.name }}"
     >
       تعديل

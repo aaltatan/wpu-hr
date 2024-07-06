@@ -5,7 +5,6 @@
   hx-target="#faculties-table"
   hx-swap="outerHTML"
   hx-on:submit="removeErrorList()"
-  hx-on::after-request="document.getElementById('messages').click();"
 >
   <h1>{{ faculty.name }}</h1>
 
@@ -20,7 +19,7 @@
 
     <button
       type="submit"
-      hx-post="{% url 'get-add-form' %}"
+      hx-post="{% url 'get-add-faculty-form' %}"
       hx-target="#faculty-form"
       hx-swap="outerHTML"
       class="btn btn-primary flex items-center gap-1"

@@ -2,6 +2,7 @@ django
 django-htmx
 django-extensions
 django-filter
+django-debug-toolbar
 xlwings
 pandas
 rich

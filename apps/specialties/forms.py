@@ -3,8 +3,8 @@ from . import models
 
 
 
-class FacultySupporterForm(forms.ModelForm):
+class SpecialtyForm(forms.ModelForm):
     
     class Meta:
-        model = models.FacultySupporter
+        model = models.Specialty
         fields = '__all__'

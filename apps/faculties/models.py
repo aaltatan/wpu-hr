@@ -12,6 +12,7 @@ class Faculty(models.Model):
     
     class Meta:
         verbose_name_plural = 'Faculties'
+        ordering = ['name']
 
     name = models.CharField(max_length=255, unique=True, verbose_name='الإسم')
     count_of_scholarship_students = models.PositiveBigIntegerField(
@@ -31,12 +32,6 @@ class Faculty(models.Model):
         validators=count_validator,
         help_text="عدد الطلاب متضمن الخريجين والمنح",
         verbose_name="عدد الطلاب",
-    )
-    supporters_percentage = models.PositiveBigIntegerField(
-        default=30,
-        validators=rate_validator,
-        help_text='نسبة الداعم الى الاختصاصي',
-        verbose_name='نسبة الداعم',
     )
     local_staff_percentage = models.PositiveBigIntegerField(
         default=50,

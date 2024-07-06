@@ -6,12 +6,19 @@
 {% include 'staff/partials/filter-staff-form.html' %}
 
 <div class="relative grid grid-cols-3 gap-4">
-  <div class="col-span-1">{% include 'staff/partials/add-staff-form.html' %}</div>
-  <div class="col-span-2">{% include 'staff/partials/staff-table.html' %}</div>
+  <div class="col-span-1">
+    {% include 'staff/partials/add-staff-form.html' %}
+  </div>
+  <div class="col-span-2">
+    {% include 'staff/partials/staff-table.html' %}
+  </div>
 </div>
 
 {% endblock %}
 
 {% block scripts %}
 <script defer src="{% static 'js/staff.js' %}"></script>
+<script id="staff-script" hx-swap-oob="true" hx-select-oob="true">
+  addEventListenersToBtns();
+</script>
 {% endblock %}

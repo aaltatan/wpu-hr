@@ -16,12 +16,12 @@ class StaffAdmin(admin.ModelAdmin):
     search_fields = ["name"]
     fields = [
         "name",
-        "faculty",
-        ("specialty", "degree", "time"),
+        "specialty",
+        ("degree", "time"),
         ("is_local", "is_countable"),
     ]
     list_filter = [
-        'faculty',
+        'specialty__faculty',
         'specialty',
         'degree',
         'time',
@@ -29,7 +29,6 @@ class StaffAdmin(admin.ModelAdmin):
         'is_countable',
     ]
     ordering = [
-        'faculty',
         'specialty',
         'degree',
         '-time',
@@ -41,5 +40,5 @@ class StaffAdmin(admin.ModelAdmin):
     show_full_result_count = True
 
     @admin.display(description="get faculty")
-    def faculty(self, obj):
-        return obj.faculty.name
+    def faculty(self, obj: models.Staff):
+        return obj.specialty.faculty.name

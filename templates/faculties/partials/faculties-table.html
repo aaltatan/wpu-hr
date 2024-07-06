@@ -7,14 +7,13 @@
 
       <tr>
         <th>#</th>
-        <td>{% get_verbose_field_name instance "name" %}</td>
-        <td>{% get_verbose_field_name instance "count_of_scholarship_students" %}</td>
-        <td>{% get_verbose_field_name instance "count_of_graduates" %}</td>
-        <td>{% get_verbose_field_name instance "count_of_students" %}</td>
-        <td>{% get_verbose_field_name instance "supporters_percentage" %}</td>
-        <td>{% get_verbose_field_name instance "local_staff_percentage" %}</td>
-        <td>{% get_verbose_field_name instance "student_to_teacher_count" %}</td>
-        <td>{% get_verbose_field_name instance "student_to_local_teacher_count" %}</td>
+        <th>{% get_verbose_field_name instance "name" %}</th>
+        <th>{% get_verbose_field_name instance "count_of_scholarship_students" %}</th>
+        <th>{% get_verbose_field_name instance "count_of_graduates" %}</th>
+        <th>{% get_verbose_field_name instance "count_of_students" %}</th>
+        <th>{% get_verbose_field_name instance "local_staff_percentage" %}</th>
+        <th>{% get_verbose_field_name instance "student_to_teacher_count" %}</th>
+        <th>{% get_verbose_field_name instance "student_to_local_teacher_count" %}</th>
         <th>#</th>
       </tr>
 
@@ -29,7 +28,6 @@
         <td>{{ faculty.count_of_scholarship_students }}</td>
         <td>{{ faculty.count_of_graduates }}</td>
         <td>{{ faculty.count_of_students }}</td>
-        <td>{{ faculty.supporters_percentage }}</td>
         <td>{{ faculty.local_staff_percentage }}</td>
         <td>{{ faculty.student_to_teacher_count }}</td>
         <td>{{ faculty.student_to_local_teacher_count }}</td>
@@ -40,21 +38,3 @@
     </tbody>
   </table>
 </div>
-
-
-<script>
-
-  addEventListenersToDeleteBtns();
-
-  function addEventListenersToDeleteBtns() {
-    const event = "htmx:afterRequest";
-    const listener = () => {
-      document.getElementById("messages").click();
-    };
-    var deleteBtns = document.querySelectorAll('button[itemprop="delete"]');
-    deleteBtns.forEach((btn) => {
-      btn.removeEventListener(event, listener);
-      btn.addEventListener(event, listener);
-    });
-  }
-</script>

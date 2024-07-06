@@ -1,10 +1,10 @@
 <button
   type="reset"
-  id="supporter-form-reset"
+  id="specialty-form-reset"
   class="btn btn-secondry flex items-center gap-1"
   title="اعادة التعيين"
-  hx-get="{% url 'get-add-form' %}"
-  hx-target="#supporter-form"
+  hx-get="{% url 'get-add-specialty-form' %}"
+  hx-target="#specialty-form"
   hx-swap="outerHTML"
 >
   {% include 'includes/icons/reset.html' with ratio="1rem" %}
