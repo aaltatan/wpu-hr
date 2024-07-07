@@ -1,0 +1,40 @@
+{% load i18n %}
+
+<form
+  class="form animate-fade"
+  id="staff-form"
+  hx-post="{% url 'update-staff' id=stf.id %}"
+  hx-target="#staff-{{ stf.id }}"
+  hx-swap="outerHTML"
+  hx-on:submit="removeErrorList()"
+  hx-on::after-request="resetTableIdx();
+  document.getElementById('messages').click();
+  addEventListenersToBtns();"
+>
+  <h1>{{ stf.name }}</h1>
+
+  {{ form }}
+  
+  <div class="flex item-center justify-center gap-1 my-8 text-sm">
+
+    <button type="submit" class="btn !bg-lime-500 hover:!bg-lime-600 text-white focus:!ring-lime-600 flex items-center gap-1" title="{% translate 'Update' %}">
+      {% include 'includes/icons/pen.html' with ratio="1rem" %}
+      <span>{% translate 'Update' %}</span>
+    </button>
+
+    <button
+      type="submit"
+      hx-post="{% url 'get-add-staff-form' %}"
+      hx-target="#staff-form"
+      hx-swap="outerHTML"
+      class="btn !bg-orange-500 hover:!bg-orange-600 text-white focus:!ring-orange-600 flex items-center gap-1"
+      title="{% translate 'Add new Staff' %}"
+    >
+      {% include 'includes/icons/plus.html' with ratio="1rem" %}
+      <span>{% translate 'Add new' %}</span>
+    </button>
+
+    {% include 'apps/staff/partials/reset-btn.html' %}
+
+  </div>
+</form>

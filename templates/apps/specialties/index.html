@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% translate 'Specialties' %}{% endblock %}
+
+{% block body %}
+
+  <div class="relative grid grid-cols-3 gap-4">
+    <div class="col-span-1">
+      {% include 'apps/specialties/partials/add-specialty-form.html' %}
+    </div>
+    <div class="col-span-2">
+      {% include 'apps/specialties/partials/specialties-table.html' %}
+    </div>
+  </div>
+  
+{% endblock %}

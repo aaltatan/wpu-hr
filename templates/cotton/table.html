@@ -1,0 +1,21 @@
+<div class="relative" id="{{ id }}">
+  <div class="rounded-md overflow-x-auto animate-fade border border-slate-200">
+
+    <table class="custom-table relative table p-2 !w-full shadow-inner">
+
+      <thead class="bg-slate-100">
+        {{ thead }}
+      </thead>
+
+      <tbody>
+        {{ tbody }}
+      </tbody>
+
+    </table>
+
+    {% if pagination %}
+      {{ pagination }}
+    {% endif %}
+    
+  </div>
+</div>

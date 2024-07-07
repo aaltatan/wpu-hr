@@ -9,6 +9,9 @@ from .. import messages as msgs
 from . import models, forms
 
 
+PART: str = 'apps/specialties/partials/'
+
+
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
     specialties = models.Specialty.objects.select_related('faculty').all()
@@ -18,14 +21,14 @@ def index(request: HttpRequest) -> HttpResponse:
         'instance': specialties.first(),
         'form': form,
     }
-    return render(request, 'specialties/index.html', context)
+    return render(request, 'apps/specialties/index.html', context)
 
 
 @login_required
 def get_add_form(request: HttpRequest) -> HttpResponse:
     form = forms.SpecialtyForm()
     context = {'form': form}
-    return render(request, 'specialties/partials/add-specialty-form.html', context)
+    return render(request, PART + 'add-specialty-form.html', context)
 
 
 @login_required
@@ -38,7 +41,7 @@ def add_specialty(request: HttpRequest) -> HttpResponse:
         return HttpResponseLocation(reverse('specialties-index'))
     else:
         context = {'form': form}
-        response = render(request, 'specialties/partials/add-specialty-form.html', context)
+        response = render(request, PART + 'add-specialty-form.html', context)
         return retarget(response, '#specialty-form')
 
 
@@ -61,7 +64,7 @@ def get_update_form(request: HttpRequest, id: int) -> HttpResponse:
     specialty = get_object_or_404(models.Specialty, id=id)
     form = forms.SpecialtyForm(instance=specialty)
     context = {'form': form, 'specialty': specialty}
-    return render(request, 'specialties/partials/update-specialty-form.html', context)
+    return render(request, PART + 'update-specialty-form.html', context)
 
 
 @login_required
@@ -76,5 +79,5 @@ def update_specialty(request: HttpRequest, id: int) -> HttpResponse:
         return HttpResponseLocation(reverse('specialties-index'))
     else:
         context = {'form': form, 'specialty': specialty}
-        response = render(request, 'specialties/partials/update-specialty-form.html', context)
+        response = render(request, PART + 'update-specialty-form.html', context)
         return retarget(response, '#specialty-form')

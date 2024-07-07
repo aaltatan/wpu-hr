@@ -9,6 +9,9 @@ from .. import messages as msgs
 from . import models, forms
 
 
+PART: str = 'apps/faculties/partials/'
+
+
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
     faculties = models.Faculty.objects.all()
@@ -18,14 +21,14 @@ def index(request: HttpRequest) -> HttpResponse:
         'instance': faculties.first(),
         'form': form,
     }
-    return render(request, 'faculties/index.html', context)
+    return render(request, 'apps/faculties/index.html', context)
 
 
 @login_required
 def get_add_form(request: HttpRequest) -> HttpResponse:
     form = forms.FacultyForm()
     context = {'form': form}
-    return render(request, 'faculties/partials/add-faculty-form.html', context)
+    return render(request, PART + 'add-faculty-form.html', context)
 
 
 @login_required
@@ -38,7 +41,7 @@ def add_faculty(request: HttpRequest) -> HttpResponse:
         return HttpResponseLocation(reverse('faculties-index'))
     else:
         context = {'form': form}
-        response = render(request, 'faculties/partials/add-faculty-form.html', context)
+        response = render(request, PART + 'add-faculty-form.html', context)
         return retarget(response, '#faculty-form')
 
 
@@ -62,7 +65,7 @@ def get_update_form(request: HttpRequest, id: int) -> HttpResponse:
     faculty = get_object_or_404(models.Faculty, id=id)
     form = forms.FacultyForm(instance=faculty)
     context = {'form': form, 'faculty': faculty}
-    return render(request, 'faculties/partials/update-faculty-form.html', context)
+    return render(request, PART + 'update-faculty-form.html', context)
 
 
 @login_required
@@ -77,5 +80,5 @@ def update_faculty(request: HttpRequest, id: int) -> HttpResponse:
         return HttpResponseLocation(reverse('faculties-index'))
     else:
         context = {'form': form, 'faculty': faculty}
-        response = render(request, 'faculties/partials/update-faculty-form.html', context)
+        response = render(request, PART + 'update-faculty-form.html', context)
         return retarget(response, '#faculty-form')

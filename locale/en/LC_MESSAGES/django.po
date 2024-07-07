@@ -1,0 +1,341 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-07 19:12+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\apps\faculties\models.py:6 .\apps\faculties\models.py:8
+msgid "count must be more than 0"
+msgstr "count must be more than 0"
+
+#: .\apps\faculties\models.py:9
+msgid "count must be less than 100"
+msgstr "count must be less than 100"
+
+#: .\apps\faculties\models.py:18 .\apps\specialties\models.py:22
+#: .\apps\staff\filters.py:8 .\apps\staff\models.py:32
+msgid "Name"
+msgstr "Name"
+
+#: .\apps\faculties\models.py:22 .\apps\faculties\models.py:23
+msgid "scholarship students count"
+msgstr "scholarship students count"
+
+#: .\apps\faculties\models.py:28 .\apps\faculties\models.py:29
+msgid "Graduates count"
+msgstr "Graduates count"
+
+#: .\apps\faculties\models.py:34
+msgid "Count of students exclude graduates and scholarship"
+msgstr "Count of students exclude graduates and scholarship"
+
+#: .\apps\faculties\models.py:35
+msgid "Students count"
+msgstr "Students count"
+
+#: .\apps\faculties\models.py:40
+msgid "Allowed local staff percentage"
+msgstr "Allowed local staff percentage"
+
+#: .\apps\faculties\models.py:41
+msgid "Local staff percentage"
+msgstr "Local staff percentage"
+
+#: .\apps\faculties\models.py:46 .\apps\faculties\models.py:47
+msgid "Students to teachers count"
+msgstr "Students to teachers count"
+
+#: .\apps\faculties\models.py:52 .\apps\faculties\models.py:53
+msgid "Students to local teachers count"
+msgstr "Students to local teachers count"
+
+#: .\apps\messages.py:4
+msgid "Done! 😁"
+msgstr "Done! 😁"
+
+#: .\apps\messages.py:5
+msgid ""
+"You can't delete this faculty because it has one or more specialties related"
+msgstr ""
+"You can't delete this faculty because it has one or more specialties related"
+
+#: .\apps\messages.py:6
+msgid ""
+"You can't delete this specialty because it has one or more staff related"
+msgstr ""
+"You can't delete this specialty because it has one or more staff related"
+
+#: .\apps\specialties\models.py:21
+msgid "The name of specialty"
+msgstr "The name of specialty"
+
+#: .\apps\specialties\models.py:27
+msgid "Percentage of the specialty"
+msgstr "Percentage of the specialty"
+
+#: .\apps\specialties\models.py:28
+msgid "Percentage"
+msgstr "Percentage"
+
+#: .\apps\specialties\models.py:31 .\apps\specialties\models.py:32
+msgid "Is specialist"
+msgstr "Is specialist"
+
+#: .\apps\specialties\models.py:70
+msgid ""
+"you CAN'T add more than 100% per faculty 😢, you could add up to "
+"%(allowed_percentage)s % only."
+msgstr ""
+"you CAN'T add more than 100% per faculty 😢, you could add up to "
+"%(allowed_percentage)s % only."
+
+#: .\apps\staff\filters.py:12
+#: .\templates\apps\staff\partials\staff-table.html:10
+msgid "Faculty"
+msgstr "Faculty"
+
+#: .\apps\staff\filters.py:17
+msgid "Is Specialist"
+msgstr "Is Specialist"
+
+#: .\apps\staff\models.py:38
+msgid "Specialty"
+msgstr "Specialty"
+
+#: .\apps\staff\models.py:39
+msgid "Specialty in one faculty"
+msgstr "Specialty in one faculty"
+
+#: .\apps\staff\models.py:45
+msgid "Degree"
+msgstr "Degree"
+
+#: .\apps\staff\models.py:46
+msgid "Degree e.g.: PHD or Master"
+msgstr "Degree e.g.: PHD or Master"
+
+#: .\apps\staff\models.py:52
+msgid "Time"
+msgstr "Time"
+
+#: .\apps\staff\models.py:53
+msgid "Time e.g.: Fulltime or part time"
+msgstr "Time e.g.: Fulltime or part time"
+
+#: .\apps\staff\models.py:57
+msgid "Is local"
+msgstr "Is local"
+
+#: .\apps\staff\models.py:58
+msgid "Is local or foreign"
+msgstr "Is local or foreign"
+
+#: .\apps\staff\models.py:62
+msgid "Is countable"
+msgstr "Is countable"
+
+#: .\apps\staff\models.py:63
+msgid "To be calculated in capacity or local functions"
+msgstr "To be calculated in capacity or local functions"
+
+#: .\apps\staff\models.py:69
+msgid "Notes"
+msgstr "Notes"
+
+#: .\templates\apps\base\index.html:4
+msgid "HR"
+msgstr "HR"
+
+#: .\templates\apps\faculties\index.html:4 .\templates\includes\navbar.html:21
+msgid "Faculties"
+msgstr "Faculties"
+
+#: .\templates\apps\faculties\partials\add-faculty-form.html:12
+#: .\templates\apps\faculties\partials\update-faculty-form.html:28
+msgid "Add New Faculty"
+msgstr "Add New Faculty"
+
+#: .\templates\apps\faculties\partials\add-faculty-form.html:19
+#: .\templates\apps\faculties\partials\add-faculty-form.html:22
+#: .\templates\apps\specialties\partials\add-specialty-form.html:19
+#: .\templates\apps\specialties\partials\add-specialty-form.html:22
+#: .\templates\apps\staff\partials\add-staff-form.html:22
+#: .\templates\apps\staff\partials\add-staff-form.html:25
+msgid "Add"
+msgstr "Add"
+
+#: .\templates\apps\faculties\partials\context-menu.html:11
+#: .\templates\apps\faculties\partials\context-menu.html:14
+#: .\templates\apps\specialties\partials\context-menu.html:9
+#: .\templates\apps\specialties\partials\context-menu.html:12
+#: .\templates\apps\staff\partials\context-menu.html:20
+#: .\templates\apps\staff\partials\context-menu.html:23
+msgid "Edit"
+msgstr "Edit"
+
+#: .\templates\apps\faculties\partials\context-menu.html:19
+#: .\templates\apps\specialties\partials\context-menu.html:16
+#: .\templates\apps\staff\partials\context-menu.html:7
+msgid "Are you sure wanna DELETE"
+msgstr "Are you sure wanna DELETE"
+
+#: .\templates\apps\faculties\partials\context-menu.html:19
+#: .\templates\apps\specialties\partials\context-menu.html:16
+#: .\templates\apps\staff\partials\context-menu.html:7
+msgid "?"
+msgstr "?"
+
+#: .\templates\apps\faculties\partials\context-menu.html:23
+#: .\templates\apps\faculties\partials\context-menu.html:27
+#: .\templates\apps\specialties\partials\context-menu.html:19
+#: .\templates\apps\specialties\partials\context-menu.html:23
+#: .\templates\apps\staff\partials\context-menu.html:10
+#: .\templates\apps\staff\partials\context-menu.html:14
+msgid "Delete"
+msgstr "Delete"
+
+#: .\templates\apps\faculties\partials\reset-btn.html:7
+#: .\templates\apps\faculties\partials\reset-btn.html:13
+#: .\templates\apps\specialties\partials\reset-btn.html:7
+#: .\templates\apps\specialties\partials\reset-btn.html:13
+#: .\templates\apps\staff\partials\filter-staff-form.html:36
+#: .\templates\apps\staff\partials\reset-btn.html:6
+#: .\templates\apps\staff\partials\reset-btn.html:12
+msgid "Reset"
+msgstr "Reset"
+
+#: .\templates\apps\faculties\partials\update-faculty-form.html:17
+#: .\templates\apps\faculties\partials\update-faculty-form.html:19
+#: .\templates\apps\specialties\partials\update-specialty-form.html:17
+#: .\templates\apps\specialties\partials\update-specialty-form.html:19
+#: .\templates\apps\staff\partials\update-staff-form.html:20
+#: .\templates\apps\staff\partials\update-staff-form.html:22
+msgid "Update"
+msgstr "Update"
+
+#: .\templates\apps\faculties\partials\update-faculty-form.html:31
+#: .\templates\apps\specialties\partials\update-specialty-form.html:31
+msgid "Add New"
+msgstr "Add New"
+
+#: .\templates\apps\specialties\index.html:4
+#: .\templates\includes\navbar.html:29
+msgid "Specialties"
+msgstr "Specialties"
+
+#: .\templates\apps\specialties\partials\add-specialty-form.html:12
+#: .\templates\apps\specialties\partials\update-specialty-form.html:28
+msgid "Add new Specialty"
+msgstr "Add new Specialty"
+
+#: .\templates\apps\staff\index.html:5 .\templates\includes\navbar.html:34
+msgid "Staff"
+msgstr "Staff"
+
+#: .\templates\apps\staff\partials\add-staff-form.html:15
+#: .\templates\apps\staff\partials\update-staff-form.html:31
+msgid "Add new Staff"
+msgstr "Add new Staff"
+
+#: .\templates\apps\staff\partials\context-menu.html:31
+#: .\templates\apps\staff\partials\context-menu.html:36
+msgid "Make it countable"
+msgstr "Make it countable"
+
+#: .\templates\apps\staff\partials\context-menu.html:31
+#: .\templates\apps\staff\partials\context-menu.html:38
+msgid "Do not count"
+msgstr "Do not count"
+
+#: .\templates\apps\staff\partials\filter-staff-form.html:22
+msgid "Filter"
+msgstr "Filter"
+
+#: .\templates\apps\staff\partials\pagination.html:10
+#: .\templates\apps\staff\partials\pagination.html:53
+msgid "of"
+msgstr "of"
+
+#: .\templates\apps\staff\partials\pagination.html:51
+msgid "page"
+msgstr "page"
+
+#: .\templates\apps\staff\partials\table-row.html:6
+msgid "Specialist"
+msgstr "Specialist"
+
+#: .\templates\apps\staff\partials\table-row.html:6
+msgid "Supporter"
+msgstr "Supporter"
+
+#: .\templates\apps\staff\partials\table-row.html:7
+msgid "Local"
+msgstr "Local"
+
+#: .\templates\apps\staff\partials\table-row.html:7
+msgid "Foreign"
+msgstr "Foreign"
+
+#: .\templates\apps\staff\partials\update-staff-form.html:34
+msgid "Add new"
+msgstr "Add new"
+
+#: .\templates\includes\footer.html:6
+msgid "Developed by"
+msgstr "Developed by"
+
+#: .\templates\includes\footer.html:8
+msgid "Abdullah Altatan"
+msgstr "Abdullah Altatan"
+
+#: .\templates\includes\navbar.html:11
+msgid "WPU HR"
+msgstr "WPU HR"
+
+#: .\templates\includes\navbar.html:60
+msgid "Arabic"
+msgstr "Arabic"
+
+#: .\templates\includes\navbar.html:62
+msgid "English"
+msgstr "English"
+
+#: .\templates\includes\navbar.html:73
+msgid "Logout"
+msgstr "Logout"
+
+#: .\templates\registration\login.html:10
+#: .\templates\registration\login.html:15
+#: .\templates\registration\login.html:21
+msgid "login"
+msgstr "login"
+
+#: .\templates\registration\login.html:16
+msgid "Please provide us your credentials"
+msgstr "Please provide us your credentials"
+
+#~ msgid "Fulltime"
+#~ msgstr "Fulltime"
+
+#~ msgid "Part time"
+#~ msgstr "Part time"
+
+#~ msgid "PHD"
+#~ msgstr "PHD"
+
+#~ msgid "Master"
+#~ msgstr "Master"

@@ -1,22 +1,26 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href='{% static "css/styles.css" %}' />
-  <title>Login</title>
+  <title>{% translate 'login' %}</title>
 </head>
 <body>
   <div class="login">
     <div class="login__header">
-      <h1>Login</h1>
-      <p>Please provide us your credentials</p>
+      <h1>{% translate 'login' %}</h1>
+      <p>{% translate 'Please provide us your credentials' %}</p>
     </div>
     <form action="{% url 'login' %}" method="post">
       {% csrf_token %}
       {{ form }}
-      <input type="submit" value="login">
+      <button type="submit" class="btn !bg-orange-500 hover:!bg-orange-600 text-white focus:!ring-orange-600 w-full">
+        {% translate 'login' %}
+      </button>
     </form>
   </div>
 </body>

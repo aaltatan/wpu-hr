@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<div class="relative group/context">
+  <button class="rounded-full p-1 hover:bg-slate-300">
+    {% include 'includes/icons/dots.html' with ratio="1.25rem" %}
+  </button>
+  <div role="menu" class="absolute rtl:left-full ltr:right-full flex justify-center flex-col divide-y bg-white border border-slate-200 divide-slate-200 transition-transform w-36 rounded-md shadow-md scale-y-0 group-hover/context:!scale-y-100">
+    {{ context }}
+  </div>
+</div>

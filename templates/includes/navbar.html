@@ -1,50 +1,81 @@
-<header id="navbar" class="w-[min(100%,80ch)] mx-auto my-2 p-6 rounded-md shadow-md sticky top-2 left-0 border border-slate-100 bg-white z-40">
-  <nav class="flex items-center justify-between">
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
+<header
+  id="navbar"
+  class="w-[min(100%,800px)] mx-auto my-2 p-6 rounded-md shadow-md sticky top-2 left-0 border border-slate-100 bg-white z-40"
+>
+  <nav class="flex items-center justify-between">
     <a href="{% url 'index' %}">
-      <h1 class="tracking-tighter text-2xl font-semibold">WPU HR</h1>
+      <h1 class="tracking-tighter text-2xl font-semibold">
+        {% translate 'WPU HR' %}
+      </h1>
     </a>
 
     <ul class="flex items-center justify-center gap-1">
       <li>
-        <a 
+        <a
           href="{% url 'faculties-index' %}"
-          class="rounded-md px-2 py-1 hover:bg-slate-100 underline"
-        >الكليات</a>
+          class="rounded-full px-2 py-1 hover:bg-slate-100 underline"
+        >
+          {% translate 'Faculties' %}
+        </a>
       </li>
       <li>
-        <a 
+        <a
           href="{% url 'specialties-index' %}"
-          class="rounded-md px-2 py-1 hover:bg-slate-100 underline"
-        >الاختصاصات</a>
+          class="rounded-full px-2 py-1 hover:bg-slate-100 underline"
+        >
+          {% translate 'Specialties' %}
+        </a>
       </li>
       <li>
-        <a 
-          href="{% url 'staff-index' %}"
-          class="rounded-md px-2 py-1 hover:bg-slate-100 underline"
-        >الهيئة التدريسية</a>
+        <a href="{% url 'staff-index' %}" class="rounded-full px-2 py-1 hover:bg-slate-100 underline">
+          {% translate 'Staff' %}
+        </a>
       </li>
     </ul>
 
-    <div class="rounded-md relative bg-slate-50 hover:bg-slate-100 px-2 py-1 cursor-pointer group/parent">
+    <div
+      class="rounded-md relative bg-slate-50 hover:bg-slate-100 px-2 py-1 cursor-pointer group/parent"
+    >
       <div class="flex justify-center items-center gap-1">
-        <h2 class="text-lg font-semibold tracking-tighter">
-          {{ user.username }}
-        </h2>
-        <span>
-          {% include 'includes/icons/drop-down.html' with ratio="1rem" %}
-        </span>
+        <h2 class="text-lg font-semibold tracking-tighter">{{ user.username }}</h2>
+        <span> {% include 'includes/icons/drop-down.html' with ratio="1rem" %} </span>
       </div>
-      <ul class="absolute top-[calc(100%+2px)] left-0 w-full z-10 bg-white rounded-md shadow-md duration-150 scale-0 overflow-hidden group-hover/parent:scale-100">
-        <li>
+      <ul
+        class="absolute top-[calc(100%+2px)] left-0 w-[100px] z-10 bg-white rounded-md shadow-md duration-300 scale-0 overflow-hidden group-hover/parent:scale-100 divide-slate-200 divide-y text-sm"
+      >
+        <li class="w-full">
+          <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <input 
+              type="hidden" 
+              name="language"
+              value="{% if LANGUAGE_CODE == 'en' %}ar{% else %}en{% endif %}"
+            >
+            <button type="submit" class="text-nowrap px-2 py-1 text-center block w-full hover:bg-slate-50 duration-150">
+              {% if LANGUAGE_CODE == 'en' %}
+                {% translate 'Arabic' %}
+              {% else %}
+                {% translate 'English' %}
+              {% endif %}
+            </button>
+          </form>
+        </li>
+        <li class="w-full">
           <form action="{% url 'logout' %}" method="POST">
             {% csrf_token %}
-            <button class="text-nowrap px-2 py-1 text-center block w-full hover:bg-slate-50 duration-150">Logout</button>
+            <button
+              class="text-nowrap px-2 py-1 text-center block w-full hover:bg-slate-50 duration-150"
+            >
+              {% translate 'Logout' %}
+            </button>
           </form>
         </li>
       </ul>
     </div>
-
 
   </nav>
 </header>

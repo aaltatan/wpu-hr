@@ -1,0 +1,340 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-07 19:10+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\apps\faculties\models.py:6 .\apps\faculties\models.py:8
+msgid "count must be more than 0"
+msgstr "يجب أن يكون الرقم أكبر من الصفر"
+
+#: .\apps\faculties\models.py:9
+msgid "count must be less than 100"
+msgstr "يجب أن يكون الرقم أقل أو يساوي 100"
+
+#: .\apps\faculties\models.py:18 .\apps\specialties\models.py:22
+#: .\apps\staff\filters.py:8 .\apps\staff\models.py:32
+msgid "Name"
+msgstr "الاسم"
+
+#: .\apps\faculties\models.py:22 .\apps\faculties\models.py:23
+msgid "scholarship students count"
+msgstr "عدد طلاب المنح"
+
+#: .\apps\faculties\models.py:28 .\apps\faculties\models.py:29
+msgid "Graduates count"
+msgstr "عدد الخريجين"
+
+#: .\apps\faculties\models.py:34
+msgid "Count of students exclude graduates and scholarship"
+msgstr "عدد الطلاب متضمن عدد الخريجين والمنح"
+
+#: .\apps\faculties\models.py:35
+msgid "Students count"
+msgstr "عدد الطلاب"
+
+#: .\apps\faculties\models.py:40
+msgid "Allowed local staff percentage"
+msgstr "النسبة المسموح بها من المدرسين على الملاك"
+
+#: .\apps\faculties\models.py:41
+msgid "Local staff percentage"
+msgstr "نسبة الملاك"
+
+#: .\apps\faculties\models.py:46 .\apps\faculties\models.py:47
+msgid "Students to teachers count"
+msgstr "نسبة الاستاذ الى الطالب"
+
+#: .\apps\faculties\models.py:52 .\apps\faculties\models.py:53
+msgid "Students to local teachers count"
+msgstr "عدد الطلاب لكل استاذ على الملاك"
+
+#: .\apps\messages.py:4
+msgid "Done! 😁"
+msgstr "تمت العملية بنجاح"
+
+#: .\apps\messages.py:5
+msgid ""
+"You can't delete this faculty because it has one or more specialties related"
+msgstr "لا يمكنك حذف هذه الكلية لوجود اختصاصات مرتبطة بها "
+
+#: .\apps\messages.py:6
+msgid ""
+"You can't delete this specialty because it has one or more staff related"
+msgstr "لا يمكنك حذف هذا الاختصاص لوجود اعضاء هيئة تدريسية مرتبطين به"
+
+#: .\apps\specialties\models.py:21
+msgid "The name of specialty"
+msgstr "اسم الاختصاص"
+
+#: .\apps\specialties\models.py:27
+msgid "Percentage of the specialty"
+msgstr "نسبة الاختصاص"
+
+#: .\apps\specialties\models.py:28
+msgid "Percentage"
+msgstr "النسبة"
+
+#: .\apps\specialties\models.py:31 .\apps\specialties\models.py:32
+msgid "Is specialist"
+msgstr "اختصاصي"
+
+#: .\apps\specialties\models.py:70
+msgid ""
+"you CAN'T add more than 100% per faculty 😢, you could add up to "
+"%(allowed_percentage)s % only."
+msgstr ""
+"لا يمكنك اضافة أكثر من نسبة 100% لكل كلية، يمكنك اضافة نسبة تصل الى "
+"%(allowed_percentage)s فقط"
+
+#: .\apps\staff\filters.py:12
+#: .\templates\apps\staff\partials\staff-table.html:10
+msgid "Faculty"
+msgstr "الكلية"
+
+#: .\apps\staff\filters.py:17
+msgid "Is Specialist"
+msgstr "اختصاصي"
+
+#: .\apps\staff\models.py:38
+msgid "Specialty"
+msgstr "اختصاصي"
+
+#: .\apps\staff\models.py:39
+msgid "Specialty in one faculty"
+msgstr "الاختصاص في الكلية الواحدة"
+
+#: .\apps\staff\models.py:45
+msgid "Degree"
+msgstr "الدرجة العلمية"
+
+#: .\apps\staff\models.py:46
+msgid "Degree e.g.: PHD or Master"
+msgstr "الدرجة العلمية، مثال: مدرس او ماجستير"
+
+#: .\apps\staff\models.py:52
+msgid "Time"
+msgstr "التفرغ"
+
+#: .\apps\staff\models.py:53
+msgid "Time e.g.: Fulltime or part time"
+msgstr "التفرغ، مثال: كلي أو جزئي"
+
+#: .\apps\staff\models.py:57
+msgid "Is local"
+msgstr "على الملاك"
+
+#: .\apps\staff\models.py:58
+msgid "Is local or foreign"
+msgstr "على الملاك أم خارج الملاك"
+
+#: .\apps\staff\models.py:62
+msgid "Is countable"
+msgstr "يحتسب"
+
+#: .\apps\staff\models.py:63
+msgid "To be calculated in capacity or local functions"
+msgstr "لاحتسابه ضمن معادلات الطاقة والملاك"
+
+#: .\apps\staff\models.py:69
+msgid "Notes"
+msgstr "ملاحظات"
+
+#: .\templates\apps\base\index.html:4
+msgid "HR"
+msgstr "الموارد البشرية"
+
+#: .\templates\apps\faculties\index.html:4 .\templates\includes\navbar.html:21
+msgid "Faculties"
+msgstr "الكليات"
+
+#: .\templates\apps\faculties\partials\add-faculty-form.html:12
+#: .\templates\apps\faculties\partials\update-faculty-form.html:28
+msgid "Add New Faculty"
+msgstr "اضافة كلية جديدة"
+
+#: .\templates\apps\faculties\partials\add-faculty-form.html:19
+#: .\templates\apps\faculties\partials\add-faculty-form.html:22
+#: .\templates\apps\specialties\partials\add-specialty-form.html:19
+#: .\templates\apps\specialties\partials\add-specialty-form.html:22
+#: .\templates\apps\staff\partials\add-staff-form.html:22
+#: .\templates\apps\staff\partials\add-staff-form.html:25
+msgid "Add"
+msgstr "اضافة"
+
+#: .\templates\apps\faculties\partials\context-menu.html:11
+#: .\templates\apps\faculties\partials\context-menu.html:14
+#: .\templates\apps\specialties\partials\context-menu.html:9
+#: .\templates\apps\specialties\partials\context-menu.html:12
+#: .\templates\apps\staff\partials\context-menu.html:20
+#: .\templates\apps\staff\partials\context-menu.html:23
+msgid "Edit"
+msgstr "تعديل"
+
+#: .\templates\apps\faculties\partials\context-menu.html:19
+#: .\templates\apps\specialties\partials\context-menu.html:16
+#: .\templates\apps\staff\partials\context-menu.html:7
+msgid "Are you sure wanna DELETE"
+msgstr "هل أنت متأكد من حذف"
+
+#: .\templates\apps\faculties\partials\context-menu.html:19
+#: .\templates\apps\specialties\partials\context-menu.html:16
+#: .\templates\apps\staff\partials\context-menu.html:7
+msgid "?"
+msgstr "؟"
+
+#: .\templates\apps\faculties\partials\context-menu.html:23
+#: .\templates\apps\faculties\partials\context-menu.html:27
+#: .\templates\apps\specialties\partials\context-menu.html:19
+#: .\templates\apps\specialties\partials\context-menu.html:23
+#: .\templates\apps\staff\partials\context-menu.html:10
+#: .\templates\apps\staff\partials\context-menu.html:14
+msgid "Delete"
+msgstr "حذف"
+
+#: .\templates\apps\faculties\partials\reset-btn.html:7
+#: .\templates\apps\faculties\partials\reset-btn.html:13
+#: .\templates\apps\specialties\partials\reset-btn.html:7
+#: .\templates\apps\specialties\partials\reset-btn.html:13
+#: .\templates\apps\staff\partials\filter-staff-form.html:36
+#: .\templates\apps\staff\partials\reset-btn.html:6
+#: .\templates\apps\staff\partials\reset-btn.html:12
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+#: .\templates\apps\faculties\partials\update-faculty-form.html:17
+#: .\templates\apps\faculties\partials\update-faculty-form.html:19
+#: .\templates\apps\specialties\partials\update-specialty-form.html:17
+#: .\templates\apps\specialties\partials\update-specialty-form.html:19
+#: .\templates\apps\staff\partials\update-staff-form.html:20
+#: .\templates\apps\staff\partials\update-staff-form.html:22
+msgid "Update"
+msgstr "تحديث"
+
+#: .\templates\apps\faculties\partials\update-faculty-form.html:31
+#: .\templates\apps\specialties\partials\update-specialty-form.html:31
+msgid "Add New"
+msgstr "اضافة"
+
+#: .\templates\apps\specialties\index.html:4
+#: .\templates\includes\navbar.html:29
+msgid "Specialties"
+msgstr "الاختصاصات"
+
+#: .\templates\apps\specialties\partials\add-specialty-form.html:12
+#: .\templates\apps\specialties\partials\update-specialty-form.html:28
+msgid "Add new Specialty"
+msgstr "اضافة اختصاص جديد"
+
+#: .\templates\apps\staff\index.html:5 .\templates\includes\navbar.html:34
+msgid "Staff"
+msgstr "الهيئة التدريسية"
+
+#: .\templates\apps\staff\partials\add-staff-form.html:15
+#: .\templates\apps\staff\partials\update-staff-form.html:31
+msgid "Add new Staff"
+msgstr "اضافة عضو جديد"
+
+#: .\templates\apps\staff\partials\context-menu.html:31
+#: .\templates\apps\staff\partials\context-menu.html:36
+msgid "Make it countable"
+msgstr "احتساب"
+
+#: .\templates\apps\staff\partials\context-menu.html:31
+#: .\templates\apps\staff\partials\context-menu.html:38
+msgid "Do not count"
+msgstr "عدم احتساب"
+
+#: .\templates\apps\staff\partials\filter-staff-form.html:22
+msgid "Filter"
+msgstr "تصفية"
+
+#: .\templates\apps\staff\partials\pagination.html:10
+#: .\templates\apps\staff\partials\pagination.html:53
+msgid "of"
+msgstr "من"
+
+#: .\templates\apps\staff\partials\pagination.html:51
+msgid "page"
+msgstr "صفحة"
+
+#: .\templates\apps\staff\partials\table-row.html:6
+msgid "Specialist"
+msgstr "اختصاصي"
+
+#: .\templates\apps\staff\partials\table-row.html:6
+msgid "Supporter"
+msgstr "داعم"
+
+#: .\templates\apps\staff\partials\table-row.html:7
+msgid "Local"
+msgstr "على الملاك"
+
+#: .\templates\apps\staff\partials\table-row.html:7
+msgid "Foreign"
+msgstr "خارج الملاك"
+
+#: .\templates\apps\staff\partials\update-staff-form.html:34
+msgid "Add new"
+msgstr "اضافة"
+
+#: .\templates\includes\footer.html:6
+msgid "Developed by"
+msgstr "تم التطوير بواسطة"
+
+#: .\templates\includes\footer.html:8
+msgid "Abdullah Altatan"
+msgstr "عبدالله التتان"
+
+#: .\templates\includes\navbar.html:11
+msgid "WPU HR"
+msgstr "الجامعة الوطنية الخاصة"
+
+#: .\templates\includes\navbar.html:60
+msgid "Arabic"
+msgstr "العربيّة"
+
+#: .\templates\includes\navbar.html:62
+msgid "English"
+msgstr "الانكليزية"
+
+#: .\templates\includes\navbar.html:73
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: .\templates\registration\login.html:10
+#: .\templates\registration\login.html:15
+#: .\templates\registration\login.html:21
+msgid "login"
+msgstr "تسجيل الدخول"
+
+#: .\templates\registration\login.html:16
+msgid "Please provide us your credentials"
+msgstr "املأ بيانات الاعتماد الخاصة بك رجاءاً"
+
+#~ msgid "Fulltime"
+#~ msgstr "كلي"
+
+#~ msgid "Part time"
+#~ msgstr "جزئي"
+
+#~ msgid "PHD"
+#~ msgstr "مدرس"
+
+#~ msgid "Master"
+#~ msgstr "ماجستير"

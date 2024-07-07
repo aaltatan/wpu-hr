@@ -1,5 +1,5 @@
-from typing import Iterable
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.db.models import Q, Sum
 from ..faculties import models as faculties_models
@@ -18,18 +18,18 @@ class Specialty(models.Model):
     )
     name = models.CharField(
         max_length=255, 
-        help_text='اسم التخصص', 
-        verbose_name='اسم التخصص',
+        help_text=_('The name of specialty'), 
+        verbose_name=_('Name'),
     )
     percentage = models.PositiveIntegerField(
         validators=faculties_models.rate_validator,
         default=65,
-        help_text='نسبة التخصص', 
-        verbose_name='نسبة التخصص'
+        help_text=_('Percentage of the specialty'), 
+        verbose_name=_('Percentage')
     )
     is_specialist = models.BooleanField(
-        help_text='اختصاصي',
-        verbose_name='اختصاصي',
+        help_text=_('Is specialist'),
+        verbose_name=_('Is specialist'),
         default=False
     )
     
@@ -66,7 +66,9 @@ class Specialty(models.Model):
         total += self.percentage
         
         if total > 100:
-            raise ValidationError(f'you CAN\'T add more than 100% per faculty 😢, you could add up to {allowed_percentage}% only.')
+            raise ValidationError(
+                _('you CAN\'T add more than 100% per faculty, you could add up to {}% only.').format(allowed_percentage)
+            )
     
     def __str__(self) -> str:
         return f'{self.faculty.name} - {self.name}'

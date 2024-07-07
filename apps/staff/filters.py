@@ -1,19 +1,20 @@
+from django.utils.translation import gettext_lazy as _
 import django_filters as filters
 from . import models
 
 
 class StaffFilter(filters.FilterSet):
     
-    name = filters.CharFilter("name", lookup_expr="contains", label="الإسم")
+    name = filters.CharFilter("name", lookup_expr="contains", label=_('Name'))
     faculty = filters.AllValuesFilter(
         'specialty__faculty__name', 
         lookup_expr="exact", 
-        label='الكلية'
+        label=_('Faculty')
     )
     is_specialist = filters.BooleanFilter(
         'specialty__is_specialist',
         lookup_expr="exact",
-        label='اختصاصي'
+        label=_('Is Specialist')
     )
     class Meta:
         model = models.Staff

@@ -1,5 +1,7 @@
+from django.utils.translation import gettext_lazy as _
+
 MESSAGES = {
-  'success': 'تم العملية بنجاح',
-  'cannot_delete_faculty': 'لا يمكنك حذف هذه الكلية لوجود اختصاصات مسجلين فيها',
-  'cannot_delete_specialty': 'لا يمكنك حذف هذه الاختصاص لوجود أعضاء مسجلين فيه',
+  'success': _('Done! 😁'),
+  'cannot_delete_faculty': _('You can\'t delete this faculty because it has one or more specialties related'),
+  'cannot_delete_specialty': _('You can\'t delete this specialty because it has one or more staff related')
 }

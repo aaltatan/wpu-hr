@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +21,7 @@
   </head>
 
   <body
-    dir="rtl" 
+    dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}" 
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
   >
     

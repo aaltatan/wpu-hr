@@ -1,0 +1,32 @@
+{% load i18n %}
+
+<c-context-menu>
+
+  <c-slot name="context">
+
+    <button
+      hx-get="{% url 'get-update-faculty-form' id=faculty.id %}"
+      hx-target="#faculty-form"
+      hx-swap="outerHTML  show:top"
+      title="{% translate 'Edit' %} {{ faculty.name }}"
+      class="hover:bg-slate-100 px-2 py-1"
+    >
+      {% translate 'Edit' %}
+    </button>
+
+    <button
+      hx-delete="{% url 'delete-faculty' id=faculty.id %}"
+      hx-confirm="{% translate 'Are you sure wanna DELETE' %} {{ faculty.name }} {% translate '?' %}"
+      hx-target="#faculties-table"
+      hx-select="#faculties-table"
+      hx-swap="outerHTML"
+      title="{% translate 'Delete' %} {{ faculty.name }}"
+      itemprop="delete"
+      class="hover:bg-slate-100 px-2 py-1"
+    >
+      {% translate 'Delete' %}
+    </button>
+
+  </c-slot>
+
+</c-context-menu>

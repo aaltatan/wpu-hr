@@ -11,6 +11,9 @@ from . import models, forms, filters
 import json
 
 
+PART: str = 'apps/staff/partials/'
+
+
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
         
@@ -52,14 +55,14 @@ def index(request: HttpRequest) -> HttpResponse:
         'params_first': json.dumps({**request.GET, 'page': 1}),
     }
     
-    return render(request, 'staff/index.html', context)
+    return render(request, 'apps/staff/index.html', context)
 
 
 @login_required
 def get_add_form(request: HttpRequest) -> HttpResponse:
     form = forms.StaffForm()
     context = {'form': form}
-    return render(request, 'staff/partials/add-staff-form.html', context)
+    return render(request, PART + 'add-staff-form.html', context)
 
 
 @login_required
@@ -72,7 +75,7 @@ def add_staff(request: HttpRequest) -> HttpResponse:
         return HttpResponseLocation(reverse('staff-index'))
     else:
         context = {'form': form}
-        response = render(request, 'staff/partials/add-staff-form.html', context)
+        response = render(request, PART + 'add-staff-form.html', context)
         return retarget(response, '#staff-form')
 
 
@@ -90,7 +93,7 @@ def get_update_form(request: HttpRequest, id: int) -> HttpResponse:
     staff = get_object_or_404(models.Staff, id=id)
     form = forms.StaffForm(instance=staff)
     context = {'form': form, 'stf': staff}
-    return render(request, 'staff/partials/update-staff-form.html', context)
+    return render(request, PART + 'update-staff-form.html', context)
 
 
 @login_required
@@ -104,10 +107,10 @@ def update_staff(request: HttpRequest, id: int) -> HttpResponse:
         messages.info(request, msgs.MESSAGES['success'], 'success')
         add_from = forms.StaffForm()
         context = {'form': add_from, 'stf': staff}
-        return render(request, 'staff/partials/table-row.html', context)
+        return render(request, PART + 'table-row.html', context)
     else:
         context = {'form': form, 'stf': staff}
-        response = render(request, 'staff/partials/update-staff-form.html', context)
+        response = render(request, PART + 'update-staff-form.html', context)
         return retarget(response, '#staff-form')
 
 
@@ -121,4 +124,4 @@ def toggle_countable(request: HttpRequest, id: int) -> HttpResponse:
     row_idx = request.headers.get('row-idx')
     context = {'stf': staff, 'row_idx': row_idx}
 
-    return render(request, 'staff/partials/table-row.html', context)
+    return render(request, PART + 'table-row.html', context)

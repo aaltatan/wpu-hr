@@ -1,0 +1,40 @@
+{% load i18n %}
+
+<form
+  class="form my-4"
+  hx-get="{% url 'staff-index' %}"
+  hx-target="#staff-table"
+  hx-select="#staff-table"
+  hx-indicator="#spinner"
+  hx-swap="outerHTML"
+  hx-on::after-request="resetTableIdx();
+  addEventListenersToBtns();"
+  id="staff-filter-form"
+>
+  <div class="grid grid-cols-8 gap-2">{{ filter_form }}</div>
+
+  <div class="flex items-center justify-center gap-1 my-4">
+
+    <button class="btn !bg-orange-500 hover:!bg-orange-600 text-white focus:!ring-orange-600 flex items-center gap-1" type="submit">
+      <span>
+        {% include 'includes/icons/filter.html' with ratio="1rem" %}
+      </span>
+      <span>{% translate 'Filter' %}</span>
+    </button>
+
+    <button
+      class="btn btn-secondry flex items-center gap-1"
+      hx-get="{% url 'staff-index' %}"
+      hx-swap="outerHTML"
+      hx-target="#staff-table"
+      hx-select="#staff-table"
+      hx-on:click="document.getElementById('staff-filter-form').reset()"
+    >
+      <span>
+        {% include 'includes/icons/reset.html' with ratio="1rem" %}
+      </span>
+      <span>{% translate 'Reset' %}</span>
+    </button>
+    
+  </div>
+</form>

@@ -1,0 +1,42 @@
+{% load verbose_names %}
+{% load i18n %}
+
+<c-table id="specialties-table">
+
+    <c-slot name="thead">
+      <tr>
+        <th>#</th>
+        <th>{% get_verbose_field_name instance.faculty "name" %}</th>
+        <th>{% get_verbose_field_name instance "name" %}</th>
+        <th>{% get_verbose_field_name instance "percentage" %}</th>
+        <th>{% get_verbose_field_name instance "is_specialist" %}</th>
+        <th>#</th>
+      </tr>
+    </c-slot>
+
+    <c-slot name="tbody">
+
+      {% for specialty in specialties %}
+      <tr id="specialty-{{ specialty.id }}" class="animate-fade">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ specialty.faculty.name }}</td>
+        <td>{{ specialty.name }}</td>
+        <td>{{ specialty.percentage }}</td>
+        <td>
+          {% if specialty.is_specialist %}
+            <span class="text-lime-500 flex items-center justify-center">
+              {% include 'includes/icons/check.html' with ratio="1.5rem" %}
+            </span>
+          {% else %}
+            <span class="text-red-500 flex items-center justify-center">
+              {% include 'includes/icons/x.html' with ratio="1.5rem" %}
+            </span>
+          {% endif %}
+        </td>
+        <td>{% include 'apps/specialties/partials/context-menu.html' %}</td>
+      </tr>
+      {% endfor %}
+      
+    </c-slot>
+
+</c-table>

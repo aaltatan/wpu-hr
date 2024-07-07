@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<c-context-menu>
+  <c-slot name="context">
+    <button
+      hx-get="{% url 'get-update-specialty-form' id=specialty.id %}"
+      hx-target="#specialty-form"
+      hx-swap="outerHTML show:#specialty-form:bottom"
+      title="{% translate 'Edit' %} {{ specialty.name }}"
+      class="hover:bg-slate-100 px-2 py-1"
+    >
+      {% translate 'Edit' %}
+    </button>
+    <button
+      hx-delete="{% url 'delete-specialty' id=specialty.id %}"
+      hx-confirm="{% translate 'Are you sure wanna DELETE' %} {{ specialty.name }}{% translate '?' %}"
+      hx-target="#specialties-table"
+      hx-swap="outerHTML"
+      title="{% translate 'Delete' %} {{ specialty.name }}"
+      itemprop="delete"
+      class="hover:bg-slate-100 px-2 py-1"
+    >
+      {% translate 'Delete' %}
+    </button>
+  </c-slot>
+</c-context-menu>

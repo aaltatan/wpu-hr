@@ -15,7 +15,7 @@ form.form {
   }
 
   & .helptext {
-    @apply absolute right-full -top-5 z-10 text-xs bg-slate-700 text-white p-3 rounded-md opacity-0 duration-150 text-center;
+    @apply absolute ltr:left-full rtl:right-full -top-5 z-10 text-xs bg-slate-700 text-white p-3 rounded-md opacity-0 duration-150 text-center;
   }
 
   & .errorlist li {
@@ -46,7 +46,6 @@ form.form {
 }
 
 table.custom-table {
-  @apply table p-2 !w-full shadow-inner;
 
   & thead tr {
     @apply bg-slate-100;
@@ -65,15 +64,14 @@ table.custom-table {
     @apply whitespace-nowrap border-t border-b border-slate-300 text-center text-slate-800;
   }
 
-  & tbody tr:first-child .context .context__menu {
+  & tbody tr:first-child [role="menu"] {
     @apply top-0;
   }
 
-  & tbody tr:not(:first-child) .context .context__menu {
+  & tbody tr:not(:first-child) [role="menu"] {
     @apply bottom-0;
   }
 }
-
 
 .login {
   @apply min-h-screen my-2 py-1 px-4 w-[min(100%,50ch)] mx-auto;
@@ -117,36 +115,8 @@ table.custom-table {
   }
   
   & form input[type="submit"] {
-    @apply btn btn-primary w-full py-4 px-4 my-4;
+    @apply btn w-full py-4 px-4 my-4;
   }
-}
-
-
-
-
-
-div.context {
-
-  @apply relative;
-
-  &:hover .context__menu{
-    @apply !scale-y-100;
-  }
-
-  & .context__btn {
-    @apply rounded-full p-1 hover:bg-slate-300 ;
-  }
-
-  & .context__menu {
-
-    @apply absolute left-full flex justify-center flex-col divide-y bg-white border border-slate-200 divide-slate-200 transition-transform w-36 rounded-md shadow-md scale-y-0;
-
-    & button {
-      @apply px-2 py-1 hover:bg-slate-200;
-    }
-
-  }
-
 }
 
 #spinner.htmx-request {
@@ -169,21 +139,6 @@ div.context {
 }
 
 .btn {
-  @apply px-2 py-1 font-semibold text-center duration-150 outline-none tracking-tighter rounded-md;
+  @apply px-2 py-1 font-semibold text-center duration-150 outline-none tracking-tighter rounded-md focus:ring-2 bg-slate-50 hover:bg-slate-100 focus:ring-slate-200;
 }
 
-.btn-primary {
-  @apply bg-orange-500 text-white hover:bg-orange-600 focus:ring-2 focus:ring-orange-700;
-}
-
-.btn-success {
-  @apply bg-lime-600 text-white hover:bg-lime-700 focus:ring-2 focus:ring-lime-800;
-}
-
-.btn-danger {
-  @apply bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-800;
-}
-
-.btn-secondry {
-  @apply bg-slate-100 hover:bg-slate-200 focus:bg-slate-200;
-}
