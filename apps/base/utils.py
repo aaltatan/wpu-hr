@@ -2,9 +2,7 @@ from ..faculties import models as faculties_models
 from ..specialties import models as specialties_models
 from ..staff import models as staff_models
 from django.db.models import QuerySet
-import pandas as pd
 import math
-from rich import print
 
 
 class FacultyController:
@@ -248,13 +246,15 @@ class FacultyController:
     
     def get_required_local_teachers_count(
         self,
+        minimum_local_percentage: int = 50
     ) -> float:
+        print(self.students_count)
+        print(self.faculty_model.student_to_local_teacher_count)
+        print(minimum_local_percentage)
         return (
             self.students_count /
-            2 / # chapters
-            5 / # count of years by ministry
             self.faculty_model.student_to_local_teacher_count
-        ) * 5 # current year by ministry
+        ) * minimum_local_percentage / 100
       
     def get_local_staff_count(self, include_masters: bool = False) -> float | int:
         phd_filters: dict[str, dict] = {

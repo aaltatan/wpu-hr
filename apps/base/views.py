@@ -11,44 +11,54 @@ from .forms import ResultsFilter
 def index(request: HttpRequest) -> HttpResponse:
 
     faculties_db = faculties_models.Faculty.objects.all()
-    filter_form = ResultsFilter(data=request.GET)
     faculties: list[dict] = []
     
-    if filter_form.is_valid():
+    if request.htmx:
+        filter_form = ResultsFilter(data=request.GET)
     
-        filters = filter_form.cleaned_data
-    
-        for faculty in faculties_db:
-            
-            data: dict = {}
+        if filter_form.is_valid():
+        
+            filters = filter_form.cleaned_data
+        
+            for faculty in faculties_db:
+                
+                data: dict = {}
 
-            controller = FacultyController(faculty, staff_models.Time, staff_models.Degree)
-            
-            data['name'] = faculty.name
-            
-            if filters['capacity'] == 'new_with_supporters_percentage': 
-                data['capacity'] = (
-                    controller.get_capacity_without_supporters_percentage()
-                )
-            elif filters['capacity'] == 'new_without_supporters_percentage':
-                data['capacity'] = (
-                    controller.get_capacity_without_supporters_percentage(
-                        respect_supporters_partials=False
+                controller = FacultyController(faculty, staff_models.Time, staff_models.Degree)
+                
+                data['name'] = faculty.name
+                
+                if filters['capacity'] == 'respect_each_specialty_fulltime_parttime_percentage': 
+                    data['capacity'] = (
+                        controller.get_capacity_without_supporters_percentage()
                     )
+                elif filters['capacity'] == 'calculate_all_specialties_as_one':
+                    data['capacity'] = (
+                        controller.get_capacity_without_supporters_percentage(
+                            respect_supporters_partials=False
+                        )
+                    )
+                else:
+                    data['capacity'] = controller.get_capacity_with_supporters_percentage()
+                
+                data['local'] = controller.get_local_staff_count(
+                    include_masters=filters['local_include_masters'],
                 )
-            else:
-                data['capacity'] = controller.get_capacity_with_supporters_percentage()
+                data['required_local'] = controller.get_required_local_teachers_count(
+                    50
+                )
+                data['students_count'] = controller.students_count
+                
+                faculties.append(data)
+        else:
             
-            data['local'] = controller.get_local_staff_count(
-                include_masters=filters['local_include_masters']
-            )
-            data['required_local'] = controller.get_required_local_teachers_count()
-            data['students_count'] = controller.students_count
-            
-            faculties.append(data)
+            context = {'form': filter_form}
+            return render(request, 'apps/base/index.html', context)
+        
+    else:
+        filter_form = ResultsFilter()
         
     context = {'faculties': faculties, 'form': filter_form}
-        
     return render(request, 'apps/base/index.html', context)
 
 
