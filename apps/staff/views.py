@@ -30,7 +30,7 @@ def index(request: HttpRequest) -> HttpResponse:
     
     filtered_staff = filters.StaffFilter(request.GET, queryset=qs)
     
-    paginator = Paginator(filtered_staff.qs, 10)
+    paginator = Paginator(filtered_staff.qs, 40)
     
     page = int(request.GET.get('page', 1))
     page_obj = paginator.get_page(page)

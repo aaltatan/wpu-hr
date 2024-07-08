@@ -30,6 +30,8 @@ class FacultyController:
             .specialties
             .filter(**specialties_filters)
         )
+        with open('file.txt', 'a', encoding='utf-8') as file:
+            file.write('1\n')
         return sum(
             specialty.staff.filter(**staff_filters).count()
             for specialty in specialties

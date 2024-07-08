@@ -4,7 +4,47 @@
 {% block title %}{% translate 'HR' %}{% endblock %}
 
 {% block body %}
-  <h1 class="font-semibold text-2xl tracking-tighter text-center">
-    {% lorem %}
-  </h1>
+
+  <div class="grid grid-cols-3 gap-1">
+
+    <div class="col-span-1">
+
+      {% include 'apps/base/partials/capacity-form.html' %}
+
+    </div>
+  
+    <div class="col-span-2">
+
+      <c-table id="results-table">
+  
+        <c-slot name="thead">
+          <tr>
+            <th>#</th>
+            <th class="capitalize">{% translate 'faculty' %}</th>
+            <th class="capitalize">{% translate 'students count' %}</th>
+            <th class="capitalize">{% translate 'capacity' %}</th>
+            <th class="capitalize">{% translate 'local' %}</th>
+            <th class="capitalize">{% translate 'required local' %}</th>
+          </tr>
+        </c-slot>
+    
+        <c-slot name="tbody">
+          {% for faculty in faculties %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ faculty.name }}</td>
+              <td>{{ faculty.students_count }}</td>
+              <td>{{ faculty.capacity }}</td>
+              <td>{{ faculty.local }}</td>
+              <td>{{ faculty.required_local }}</td>
+            </tr>
+          {% endfor %}
+        </c-slot>
+    
+      </c-table>
+
+    </div>
+
+  </div>
+
 {% endblock %}

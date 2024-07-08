@@ -89,7 +89,7 @@ table.custom-table {
   & .errorlist {
     @apply my-2;
     li {
-      @apply py-2 px-4 bg-orange-100 text-orange-700 text-balance rounded-md;
+      @apply py-2 px-4 bg-orange-100 text-orange-700 rounded-md;
     }
   }
 

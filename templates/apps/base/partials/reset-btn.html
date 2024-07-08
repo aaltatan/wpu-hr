@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<button
+  type="reset"
+  id="capacity-form-reset"
+  class="btn flex items-center gap-1"
+  title="{% translate 'Reset' %}"
+>
+  {% include 'includes/icons/reset.html' with ratio="1rem" %}
+  <span>{% translate 'Reset' %}</span>
+</button>

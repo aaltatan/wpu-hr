@@ -19,7 +19,7 @@
         hx-get="{% url 'staff-index' %}"
         hx-target="#staff-table"
         hx-select="#staff-table"
-        hx-swap="outerHTML"
+        hx-swap="outerHTML show:#staff-form:bottom"
         hx-vals='{{ params_last }}'
         title="Last"
         role="navigation"
@@ -35,7 +35,7 @@
         hx-get="{% url 'staff-index' %}"
         hx-target="#staff-table"
         hx-select="#staff-table"
-        hx-swap="outerHTML"
+        hx-swap="outerHTML show:#staff-form:bottom"
         hx-vals='{{ params_next }}'
         title="next"
         {% if not staff.has_next %}disabled{% endif %}
@@ -61,7 +61,7 @@
         hx-get="{% url 'staff-index' %}"
         hx-target="#staff-table"
         hx-select="#staff-table"
-        hx-swap="outerHTML"
+        hx-swap="outerHTML show:#staff-form:bottom"
         hx-vals='{{ params_previous }}'
         title="previous"
         {% if not staff.has_previous %}disabled{% endif %}
@@ -77,7 +77,7 @@
         hx-get="{% url 'staff-index' %}"
         hx-target="#staff-table"
         hx-select="#staff-table"
-        hx-swap="outerHTML"
+        hx-swap="outerHTML show:#staff-form:bottom"
         hx-vals='{{ params_first }}'
         title="First"
         {% if not staff.has_previous %}disabled{% endif %}
