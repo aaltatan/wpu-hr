@@ -5,7 +5,6 @@
   id="capacity-form"
   hx-get="{% url 'index' %}"
   hx-target="#results-table"
-  hx-select="#results-table"
   hx-swap="outerHTML"
   hx-on:submit="removeErrorList()"
 >
@@ -13,6 +12,7 @@
   <div class="flex item-center justify-center gap-1 my-8">
 
     <button 
+    id="capacity-form-submit-btn"
     type="submit" 
     class="btn !bg-orange-500 !text-white hover:!bg-orange-600 focus:!ring-orange-600 flex items-center gap-1" 
     title="{% translate 'Filter' %}"

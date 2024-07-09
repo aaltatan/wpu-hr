@@ -17,6 +17,7 @@ CAPACITY_CHOICES = (
       _('respect specialist supporters percentage'), 
     ),
 )
+DEFAULT_LOCAL_PERCENTAGE: int = 50
 
 
 class ResultsFilter(forms.Form):
@@ -37,7 +38,7 @@ class ResultsFilter(forms.Form):
     
     minimum_local_percentage = forms.IntegerField(
       label=_('minimum local percentage'),
-      initial=50,
+      initial=DEFAULT_LOCAL_PERCENTAGE,
       required=False,
       help_text=_('minimum local percentage which ministry require'),
       validators=rate_validator,
