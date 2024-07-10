@@ -9,7 +9,7 @@ class FacultyAdmin(admin.ModelAdmin):
         "count_of_scholarship_students",
         "count_of_graduates",
         "count_of_students",
-        "local_staff_percentage",
+        "count_of_new_students",
         "student_to_teacher_count",
         "student_to_local_teacher_count",
     ]
@@ -19,9 +19,9 @@ class FacultyAdmin(admin.ModelAdmin):
             "count_of_scholarship_students",
             "count_of_graduates",
             "count_of_students",
+            "count_of_new_students",
         ),
         (
-            "local_staff_percentage",
             "student_to_teacher_count",
             "student_to_local_teacher_count",
         ),

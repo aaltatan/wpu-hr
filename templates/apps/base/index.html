@@ -21,10 +21,12 @@
           <tr>
             <th>#</th>
             <th class="capitalize">{% translate 'faculty' %}</th>
-            <th class="capitalize">{% translate 'students count' %}</th>
             <th class="capitalize">{% translate 'capacity' %}</th>
+            <th class="capitalize">{% translate 'students count' %}</th>
+            <th class="capitalize">{% translate 'capacity difference' %}</th>
             <th class="capitalize">{% translate 'local' %}</th>
             <th class="capitalize">{% translate 'required local' %}</th>
+            <th class="capitalize">{% translate 'local difference' %}</th>
           </tr>
         </c-slot>
     
@@ -33,10 +35,16 @@
             <tr>
               <td>{{ forloop.counter }}</td>
               <td>{{ faculty.name }}</td>
-              <td>{{ faculty.students_count }}</td>
               <td>{{ faculty.capacity }}</td>
+              <td>{{ faculty.students_count }}</td>
+              <td class="font-bold {% if faculty.capacity_difference < 0 %}!text-red-600{% else %}!text-lime-600{% endif %}" >
+                {{ faculty.capacity_difference }}
+              </td>
               <td>{{ faculty.local }}</td>
               <td>{{ faculty.required_local }}</td>
+              <td class="font-bold {% if faculty.local_difference < 0 %}!text-red-600{% else %}!text-lime-600{% endif %}" >
+                {{ faculty.local_difference }}
+              </td>
             </tr>
           {% endfor %}
         </c-slot>

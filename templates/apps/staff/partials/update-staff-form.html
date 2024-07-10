@@ -17,9 +17,9 @@
   
   <div class="flex item-center justify-center gap-1 my-8 text-sm">
 
-    <button type="submit" class="btn !bg-lime-500 hover:!bg-lime-600 text-white focus:!ring-lime-600 flex items-center gap-1" title="{% translate 'Update' %}">
+    <button type="submit" class="btn !bg-lime-500 hover:!bg-lime-600 text-white focus:!ring-lime-600 flex items-center gap-1" title="{% translate 'update' %}">
       {% include 'includes/icons/pen.html' with ratio="1rem" %}
-      <span>{% translate 'Update' %}</span>
+      <span>{% translate 'update' %}</span>
     </button>
 
     <button
@@ -28,10 +28,10 @@
       hx-target="#staff-form"
       hx-swap="outerHTML"
       class="btn !bg-orange-500 hover:!bg-orange-600 text-white focus:!ring-orange-600 flex items-center gap-1"
-      title="{% translate 'Add new Staff' %}"
+      title="{% translate 'add new staff' %}"
     >
       {% include 'includes/icons/plus.html' with ratio="1rem" %}
-      <span>{% translate 'Add new' %}</span>
+      <span>{% translate 'add new' %}</span>
     </button>
 
     {% include 'apps/staff/partials/reset-btn.html' %}

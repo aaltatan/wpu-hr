@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<c-context-menu>
+
+  <c-slot name="context">
+
+    <button
+      hx-delete="{% url 'reset-all-new-students-counts' %}"
+      hx-confirm="{% translate 'are you sure wanna RESET all new students counts from all faculties ?' %}"
+      hx-target="#faculties-table"
+      hx-select="#faculties-table"
+      hx-swap="outerHTML"
+      title="{% translate 'reset new students counts from all faculties' %}"
+      itemprop="delete"
+      class="hover:bg-slate-100 px-2 py-1"
+    >
+      {% translate 'reset new students counts' %}
+    </button>
+
+    <button
+      hx-delete="{% url 'reset-all-students-counts' %}"
+      hx-confirm="{% translate 'are you sure wanna RESET all students counts from all faculties ?' %}"
+      hx-target="#faculties-table"
+      hx-select="#faculties-table"
+      hx-swap="outerHTML"
+      title="{% translate 'reset students counts from all faculties' %}"
+      itemprop="delete"
+      class="hover:bg-slate-100 px-2 py-1"
+    >
+      {% translate 'reset students counts' %}
+    </button>
+
+  </c-slot>
+
+</c-context-menu>

@@ -3,22 +3,25 @@
 <form
   class="form animate-fade"
   id="capacity-form"
-  hx-get="{% url 'index' %}"
+  hx-post="{% url 'index' %}"
   hx-target="#results-table"
   hx-swap="outerHTML"
   hx-on:submit="removeErrorList()"
+  hx-on::before-request="document.getElementById('results-table').innerHTML = ''"
 >
+
+  <h1 class="capitalize">{% translate 'calculation parameters' %}</h1>
+
   {{ form }}
   <div class="flex item-center justify-center gap-1 my-8">
 
     <button 
-    id="capacity-form-submit-btn"
     type="submit" 
     class="btn !bg-orange-500 !text-white hover:!bg-orange-600 focus:!ring-orange-600 flex items-center gap-1" 
-    title="{% translate 'Filter' %}"
+    title="{% translate 'calculate' %}"
     >
       {% include 'includes/icons/floppy.html' with ratio="1rem" %}
-      <span>{% translate 'Filter' %}</span>
+      <span>{% translate 'calculate' %}</span>
     </button>
 
     {% include 'apps/base/partials/reset-btn.html' %}

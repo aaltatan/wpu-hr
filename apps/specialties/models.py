@@ -14,22 +14,23 @@ class Specialty(models.Model):
     faculty = models.ForeignKey(
         faculties_models.Faculty, 
         on_delete=models.PROTECT, 
-        related_name='specialties'
+        related_name='specialties',
+        verbose_name=_('faculty'),
     )
     name = models.CharField(
         max_length=255, 
-        help_text=_('The name of specialty'), 
-        verbose_name=_('Name'),
+        help_text=_('the name of specialty'), 
+        verbose_name=_('name'),
     )
     percentage = models.PositiveIntegerField(
         validators=faculties_models.rate_validator,
         default=65,
-        help_text=_('Percentage of the specialty'), 
-        verbose_name=_('Percentage')
+        help_text=_('percentage of the specialty'), 
+        verbose_name=_('percentage')
     )
     is_specialist = models.BooleanField(
-        help_text=_('Is specialist'),
-        verbose_name=_('Is specialist'),
+        help_text=_('is specialist'),
+        verbose_name=_('is specialist'),
         default=False
     )
     

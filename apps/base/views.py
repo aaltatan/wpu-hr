@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.urls import reverse
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django_htmx.http import HttpResponseLocation
 from ..faculties import models as faculties_models
 from ..staff import models as staff_models
 from ..base.utils import FacultyController, get_template_data
@@ -15,10 +17,11 @@ def index(request: HttpRequest) -> HttpResponse:
         'capacity': CAPACITY_CHOICES[0][0],
         'local_include_masters': False,
         'minimum_local_percentage': DEFAULT_LOCAL_PERCENTAGE,
+        'by_student_to_local_teacher_count': True,
     }
     
-    if request.htmx:
-        filter_form = ResultsFilter(data=request.GET)
+    if request.method == 'POST':
+        filter_form = ResultsFilter(data=request.POST)
         if filter_form.is_valid():
             form_data = filter_form.cleaned_data
         else:
@@ -40,7 +43,10 @@ def index(request: HttpRequest) -> HttpResponse:
         
     context = {'faculties': faculties, 'form': filter_from}
     response = render(request, 'apps/base/index.html', context)
-    response['Hx-Reselect'] = '#results-table'
+    
+    if request.htmx:
+        response['Hx-Reselect'] = '#results-table'
+    
     return response
 
 

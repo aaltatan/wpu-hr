@@ -3,8 +3,8 @@
 <tr
   id="staff-{{ stf.id }}"
   class="animate-fade {% if not stf.is_countable %} bg-red-200 hover:!bg-red-300 {% endif %}"
-  title="{% if stf.specialty.is_specialist %}{% translate 'Specialist' %}{% else %}{% translate 'Supporter' %}{% endif %}
-{% if stf.is_local %}{% translate 'Local' %}{% else %}{% translate 'Foreign' %}{% endif %}"
+  title="{% if stf.specialty.is_specialist %}{% translate 'specialist' %}{% else %}{% translate 'supporter' %}{% endif %}
+{% if stf.is_local %}{% translate 'local' %}{% else %}{% translate 'foreign' %}{% endif %}"
 >
   <td class="row-idx">{{ row_idx }}</td>
   <td>{{ stf.name }}</td>

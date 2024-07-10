@@ -5,16 +5,16 @@ from . import models
 
 class StaffFilter(filters.FilterSet):
     
-    name = filters.CharFilter("name", lookup_expr="contains", label=_('Name'))
+    name = filters.CharFilter("name", lookup_expr="contains", label=_('name'))
     faculty = filters.AllValuesFilter(
         'specialty__faculty__name', 
         lookup_expr="exact", 
-        label=_('Faculty')
+        label=_('faculty')
     )
     is_specialist = filters.BooleanFilter(
         'specialty__is_specialist',
         lookup_expr="exact",
-        label=_('Is Specialist')
+        label=_('is specialist')
     )
     class Meta:
         model = models.Staff

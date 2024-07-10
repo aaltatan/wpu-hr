@@ -7,24 +7,37 @@
     <button
       hx-get="{% url 'get-update-faculty-form' id=faculty.id %}"
       hx-target="#faculty-form"
-      hx-swap="outerHTML  show:top"
-      title="{% translate 'Edit' %} {{ faculty.name }}"
+      hx-swap="outerHTML show:top"
+      title="{% translate 'edit' %} {{ faculty.name }}"
       class="hover:bg-slate-100 px-2 py-1"
     >
-      {% translate 'Edit' %}
+      {% translate 'edit' %}
     </button>
 
     <button
       hx-delete="{% url 'delete-faculty' id=faculty.id %}"
-      hx-confirm="{% translate 'Are you sure wanna DELETE' %} {{ faculty.name }} {% translate '?' %}"
+      hx-confirm="{% translate 'are you sure wanna DELETE' %} {{ faculty.name }} {% translate '?' %}"
       hx-target="#faculties-table"
       hx-select="#faculties-table"
       hx-swap="outerHTML"
-      title="{% translate 'Delete' %} {{ faculty.name }}"
+      title="{% translate 'delete' %} {{ faculty.name }}"
       itemprop="delete"
       class="hover:bg-slate-100 px-2 py-1"
     >
-      {% translate 'Delete' %}
+      {% translate 'delete' %}
+    </button>
+
+    <button
+      hx-delete="{% url 'reset-students-counts' id=faculty.id %}"
+      hx-confirm="{% translate 'are you sure wanna RESET all students counts from' %} {{ faculty.name }} {% translate '?' %}"
+      hx-target="#faculties-table"
+      hx-select="#faculties-table"
+      hx-swap="outerHTML"
+      title="{% translate 'reset students counts' %} {{ faculty.name }}"
+      itemprop="delete"
+      class="hover:bg-slate-100 px-2 py-1"
+    >
+      {% translate 'reset students counts' %}
     </button>
 
   </c-slot>

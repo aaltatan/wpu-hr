@@ -107,7 +107,8 @@ class FacultyController:
         return (
             self.faculty_instance.count_of_students -
             self.faculty_instance.count_of_scholarship_students -
-            self.faculty_instance.count_of_graduates
+            self.faculty_instance.count_of_graduates +
+            self.faculty_instance.count_of_new_students
         )
         
     def __get_allowed_parttime_count(
@@ -269,12 +270,21 @@ class FacultyController:
     
     def get_required_local_teachers_count(
         self,
-        minimum_local_percentage: int
+        minimum_local_percentage: int,
+        by_student_to_local_teacher_count: bool,
     ) -> float:
+        
+        student_to_teacher_count: int = 0
+        
+        if by_student_to_local_teacher_count:
+            student_to_teacher_count = self.faculty_instance.student_to_local_teacher_count 
+        else:
+            student_to_teacher_count = self.faculty_instance.student_to_teacher_count
+        
         return round(
             (
                 self.students_count / 
-                self.faculty_instance.student_to_local_teacher_count 
+                student_to_teacher_count 
                 * minimum_local_percentage 
                 / 100    
             ),
@@ -286,6 +296,7 @@ class FacultyController:
             'staff_filters': {
                 'degree': self.degree_enum_model.PHD,
                 'is_local': True,
+                'is_countable': True,
             }
         }
         
@@ -296,6 +307,7 @@ class FacultyController:
                 'staff_filters': {
                     'degree': self.degree_enum_model.MASTER,
                     'is_local': True,
+                    'is_countable': True,
                 }
             }
             master_count = self.__get_staff_count(master_filters)
@@ -308,26 +320,44 @@ class FacultyController:
 
 def get_template_data(form_data: dict, controller: FacultyController, faculty_name: str) -> dict:
     
-    data: dict = {}
-
-    data['name'] = faculty_name
+    capacity: int | float = 0
+    students_count: int = 0
+    local: int = 0
+    required_local: int | float = 0
     
     if form_data['capacity'] == 'respect_each_specialty_fulltime_parttime_percentage':
-        data['capacity'] = controller.get_capacity_without_supporters_percentage()
+        capacity = controller.get_capacity_without_supporters_percentage()
     elif form_data['capacity'] == 'calculate_all_specialties_as_one':
-        data['capacity'] = controller.get_capacity_without_supporters_percentage(
+        capacity = controller.get_capacity_without_supporters_percentage(
             respect_supporters_partials=False
         )
     else:
-        data['capacity'] = controller.get_capacity_with_supporters_percentage()
+        capacity = controller.get_capacity_with_supporters_percentage()
+        
+    students_count = controller.students_count
     
-    data['local'] = controller.get_local_staff_count(
+    capacity_difference: float | int = capacity - students_count
+    
+    local = controller.get_local_staff_count(
         form_data['local_include_masters']
     )
-    data['required_local'] = (
-        controller
-        .get_required_local_teachers_count(form_data['minimum_local_percentage'])
-    )
-    data['students_count'] = controller.students_count
     
-    return data
+    required_local = (
+        controller
+        .get_required_local_teachers_count(
+            minimum_local_percentage=form_data['minimum_local_percentage'],
+            by_student_to_local_teacher_count=form_data['by_student_to_local_teacher_count']
+        )
+    )
+    
+    local_difference: float | int = round(local - required_local, 2)
+    
+    return {
+        'name': faculty_name,
+        'capacity': capacity,
+        'students_count': students_count,
+        'capacity_difference': capacity_difference,
+        'local': local,
+        'required_local': required_local,
+        'local_difference': local_difference,
+    }

@@ -16,22 +16,22 @@
       <li>
         <a
           href="{% url 'faculties-index' %}"
-          class="rounded-full px-2 py-1 hover:bg-slate-100 underline"
+          class="rounded-full px-2 py-1 capitalize hover:bg-slate-100 underline"
         >
-          {% translate 'Faculties' %}
+          {% translate 'faculties' %}
         </a>
       </li>
       <li>
         <a
           href="{% url 'specialties-index' %}"
-          class="rounded-full px-2 py-1 hover:bg-slate-100 underline"
+          class="rounded-full px-2 py-1 capitalize hover:bg-slate-100 underline"
         >
-          {% translate 'Specialties' %}
+          {% translate 'specialties' %}
         </a>
       </li>
       <li>
-        <a href="{% url 'staff-index' %}" class="rounded-full px-2 py-1 hover:bg-slate-100 underline">
-          {% translate 'Staff' %}
+        <a href="{% url 'staff-index' %}" class="rounded-full px-2 py-1 hover:bg-slate-100 underline capitalize">
+          {% translate 'staff' %}
         </a>
       </li>
     </ul>
@@ -40,7 +40,7 @@
       class="rounded-md relative bg-slate-50 hover:bg-slate-100 px-2 py-1 cursor-pointer group/parent"
     >
       <div class="flex justify-center items-center gap-1">
-        <h2 class="text-lg font-semibold tracking-tighter">{{ user.username }}</h2>
+        <h2 class="text-lg font-semibold tracking-tighter capitalize">{{ user.username }}</h2>
         <span> {% include 'includes/icons/drop-down.html' with ratio="1rem" %} </span>
       </div>
       <ul
@@ -55,11 +55,11 @@
               name="language"
               value="{% if LANGUAGE_CODE == 'en' %}ar{% else %}en{% endif %}"
             >
-            <button type="submit" class="text-nowrap px-2 py-1 text-center block w-full hover:bg-slate-50 duration-150">
+            <button type="submit" class="text-nowrap px-2 py-1 text-center block w-full hover:bg-slate-50 duration-150 capitalize">
               {% if LANGUAGE_CODE == 'en' %}
-                {% translate 'Arabic' %}
+                {% translate 'arabic' %}
               {% else %}
-                {% translate 'English' %}
+                {% translate 'english' %}
               {% endif %}
             </button>
           </form>
@@ -68,9 +68,9 @@
           <form action="{% url 'logout' %}" method="POST">
             {% csrf_token %}
             <button
-              class="text-nowrap px-2 py-1 text-center block w-full hover:bg-slate-50 duration-150"
+              class="text-nowrap px-2 py-1 text-center block w-full hover:bg-slate-50 duration-150 capitalize"
             >
-              {% translate 'Logout' %}
+              {% translate 'logout' %}
             </button>
           </form>
         </li>

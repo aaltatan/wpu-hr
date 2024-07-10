@@ -4,11 +4,11 @@
   type="reset"
   id="faculty-form-reset"
   class="btn flex items-center gap-1"
-  title="{% translate 'Reset' %}"
+  title="{% translate 'reset' %}"
   hx-get="{% url 'get-add-faculty-form' %}"
   hx-target="#faculty-form"
   hx-swap="outerHTML"
 >
   {% include 'includes/icons/reset.html' with ratio="1rem" %}
-  <span>{% translate 'Reset' %}</span>
+  <span>{% translate 'reset' %}</span>
 </button>

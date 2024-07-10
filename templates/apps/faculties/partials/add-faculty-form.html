@@ -9,17 +9,17 @@
   hx-on:submit="removeErrorList()"
   hx-on::after-swap="document.getElementById('faculty-form-reset').click()"
 >
-  <h1>{% translate 'Add New Faculty' %}</h1>
+  <h1 class="capitalize">{% translate 'add new faculty' %}</h1>
   {{ form }}
   <div class="flex item-center justify-center gap-1 my-8">
 
     <button 
     type="submit" 
     class="btn !bg-lime-500 !text-white hover:!bg-lime-600 focus:!ring-lime-600 flex items-center gap-1" 
-    title="{% translate 'Add' %}"
+    title="{% translate 'add' %}"
     >
       {% include 'includes/icons/floppy.html' with ratio="1rem" %}
-      <span>{% translate 'Add' %}</span>
+      <span class="capitalize">{% translate 'add' %}</span>
     </button>
 
     {% include 'apps/faculties/partials/reset-btn.html' %}

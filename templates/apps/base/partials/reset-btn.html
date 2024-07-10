@@ -2,14 +2,13 @@
 
 <button
   type="reset"
-  id="capacity-form-reset"
   class="btn flex items-center gap-1"
-  title="{% translate 'Reset' %}"
+  title="{% translate 'reset' %}"
   hx-get="{% url 'capacity-form' %}"
   hx-target="#capacity-form"
   hx-swap="outerHTML"
-  hx-on::after-request="document.getElementById('capacity-form-submit-btn').click()"
+  hx-on:click="document.getElementById('results-table').innerHTML = ''"
 >
   {% include 'includes/icons/reset.html' with ratio="1rem" %}
-  <span>{% translate 'Reset' %}</span>
+  <span>{% translate 'reset' %}</span>
 </button>

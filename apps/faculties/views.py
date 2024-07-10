@@ -82,3 +82,53 @@ def update_faculty(request: HttpRequest, id: int) -> HttpResponse:
         context = {'form': form, 'faculty': faculty}
         response = render(request, PART + 'update-faculty-form.html', context)
         return retarget(response, '#faculty-form')
+
+
+@login_required
+@require_http_methods(['DELETE'])
+def reset_students_counts(request: HttpRequest, id: int) -> HttpResponse:
+    
+    faculty = get_object_or_404(models.Faculty, id=id)
+    
+    faculty.count_of_students = 0
+    faculty.count_of_graduates = 0
+    faculty.count_of_new_students = 0
+    faculty.count_of_scholarship_students = 0
+    
+    faculty.save()
+    messages.info(request, msgs.MESSAGES['success'], 'success')
+    
+    return HttpResponseLocation(reverse('faculties-index'))
+
+
+@login_required
+@require_http_methods(['DELETE'])
+def reset_all_new_students_counts(request: HttpRequest) -> HttpResponse:
+    
+    faculties = models.Faculty.objects.all()
+    
+    for faculty in faculties:
+        faculty.count_of_new_students = 0
+        faculty.save()
+        
+    messages.info(request, msgs.MESSAGES['success'], 'success')
+    
+    return HttpResponseLocation(reverse('faculties-index'))
+
+
+@login_required
+@require_http_methods(['DELETE'])
+def reset_all_students_counts(request: HttpRequest) -> HttpResponse:
+    
+    faculties = models.Faculty.objects.all()
+    
+    for faculty in faculties:
+        faculty.count_of_students = 0
+        faculty.count_of_graduates = 0
+        faculty.count_of_new_students = 0
+        faculty.count_of_scholarship_students = 0
+        faculty.save()
+        
+    messages.info(request, msgs.MESSAGES['success'], 'success')
+    
+    return HttpResponseLocation(reverse('faculties-index'))

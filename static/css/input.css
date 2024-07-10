@@ -31,7 +31,7 @@ form.form {
   }
 
   & label {
-    @apply text-sm my-1 duration-150 block;
+    @apply text-sm my-1 duration-150 block capitalize;
   }
 
   & div:has(input[type="checkbox"]) {
@@ -55,6 +55,10 @@ table.custom-table {
     @apply bg-slate-100;
   }
 
+  & th {
+    @apply capitalize;
+  }
+
   & th,
   td {
     @apply p-1 text-sm;
@@ -64,10 +68,12 @@ table.custom-table {
     @apply whitespace-nowrap border-t border-b border-slate-300 text-center text-slate-800;
   }
 
+  & th [role="menu"] {
+    @apply top-0;
+  }
   & tbody tr:first-child [role="menu"] {
     @apply top-0;
   }
-
   & tbody tr:not(:first-child) [role="menu"] {
     @apply bottom-0;
   }
@@ -139,6 +145,9 @@ table.custom-table {
 }
 
 .btn {
-  @apply px-2 py-1 font-semibold text-center duration-150 outline-none tracking-tighter rounded-md focus:ring-2 bg-slate-50 hover:bg-slate-100 focus:ring-slate-200;
+  @apply px-2 py-1 font-semibold text-center duration-150 outline-none tracking-tighter rounded-md focus:ring-2 bg-slate-50 hover:bg-slate-100 focus:ring-slate-200 capitalize;
 }
 
+[role="menu"] button {
+  @apply capitalize whitespace-nowrap !font-normal;
+}

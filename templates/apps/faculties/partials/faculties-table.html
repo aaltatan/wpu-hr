@@ -10,10 +10,10 @@
         <th>{% get_verbose_field_name instance "count_of_scholarship_students" %}</th>
         <th>{% get_verbose_field_name instance "count_of_graduates" %}</th>
         <th>{% get_verbose_field_name instance "count_of_students" %}</th>
-        <th>{% get_verbose_field_name instance "local_staff_percentage" %}</th>
+        <th>{% get_verbose_field_name instance "count_of_new_students" %}</th>
         <th>{% get_verbose_field_name instance "student_to_teacher_count" %}</th>
         <th>{% get_verbose_field_name instance "student_to_local_teacher_count" %}</th>
-        <th>#</th>
+        <th>{% include 'apps/faculties/partials/table-context-menu.html' %}</th>
       </tr>
     </c-slot>
 
@@ -25,7 +25,7 @@
         <td>{{ faculty.count_of_scholarship_students }}</td>
         <td>{{ faculty.count_of_graduates }}</td>
         <td>{{ faculty.count_of_students }}</td>
-        <td>{{ faculty.local_staff_percentage }}</td>
+        <td>{{ faculty.count_of_new_students }}</td>
         <td>{{ faculty.student_to_teacher_count }}</td>
         <td>{{ faculty.student_to_local_teacher_count }}</td>
         <td>{% include 'apps/faculties/partials/context-menu.html' %}</td>
