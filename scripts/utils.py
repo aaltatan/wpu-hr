@@ -1,10 +1,9 @@
-from apps.staff import models as staff_models
-from apps.faculties import models as faculty_models
-from apps.specialties import models as specialties_models
 import json
-import pandas as pd
-import xlwings as xw
-from rich import print
+import openpyxl
+from openpyxl.cell import Cell
+from apps.staff.models import Staff
+from apps.faculties.models import Faculty
+from apps.specialties.models import Specialty
 
 
 def read_initial_data() -> dict[str, dict]:
@@ -19,17 +18,11 @@ def db_reset() -> None:
     """
     delete all records in the database
     """
-    staff = staff_models.Staff.objects.all()
-    for s in staff:
-        s.delete()
-        
-    specialties = specialties_models.Specialty.objects.all()
-    for s in specialties:
-      s.delete()
-      
-    faculties = faculty_models.Faculty.objects.all()
-    for f in faculties:
-      f.delete()
+    Staff.objects.all().delete()
+    Specialty.objects.all().delete()
+    Faculty.objects.all().delete()
+    
+    print('done reset! 😁')
 
 
 def db_import_faculties_specialties() -> None:
@@ -38,57 +31,69 @@ def db_import_faculties_specialties() -> None:
     """
     initial_data = read_initial_data()
     
+    specialties: list[Specialty] = []
+    
     for faculty in initial_data.values():
         name = faculty['name']
-        faculty_instance = faculty_models.Faculty.objects.create(name=name)
+        faculty_instance = Faculty.objects.create(name=name)
         
-        specialties: list[dict] = faculty['specialties']
-        for specialty in specialties:
-            specialties_models.Specialty.objects.create(
-              faculty=faculty_instance,
-              **specialty
-            )
+        specialties_initial: list[dict] = faculty['specialties']
+        for specialty in specialties_initial:
+            s = Specialty(faculty=faculty_instance, **specialty)
+            specialties.append(s)
+            
+    Specialty.objects.bulk_create(specialties)
     
     print('done importing faculties and specialties! 😁')
+
+
+def read_xlsx_data(path: str) -> list[dict]:
+    """
+    import staff from staff.xlsx file
+    """
+    data: list[dict] = []
+    
+    wb = openpyxl.load_workbook(path)
+    ws = wb.active
+    lr = ws.max_row
+    
+    headers_rg: list[Cell] = ws[f'A1:F1'][0]
+    headers = [cell.value for cell in headers_rg]
+    
+    for idx in range(2, lr):
+        row_rg: list[Cell] = ws[f'A{idx}:F{idx}'][0]
+        row = {k: v.value for k, v in zip(headers, row_rg)}
+        data.append(row)
+      
+    return data
 
 
 def db_import_staff() -> None:
     """
     import staff from staff.xlsx file
     """
-    book = xw.Book('scripts/inputs/staff.xlsx')
-    sh: xw.Sheet = book.sheets[0]
-    lr = sh.range('A10000').end('up').row
-    rg = sh.range(f'A2:F{lr}').value
-    columns = sh.range(f'A1:F1').value
-    
-    df = pd.DataFrame(rg, columns=columns)
-    data = df.to_dict(orient='records')
+    xlsx_path:str  = 'scripts/inputs/staff.xlsx'
+    staff_data = read_xlsx_data(xlsx_path)
     
     initial_data = read_initial_data()
+    staff_list: list[Staff] = []
     
-    for staff in data:
+    for staff in staff_data:
 
         faculty_name: str = initial_data[staff['faculty']]['name']
-        faculty_instance = (
-          faculty_models
-          .Faculty
-          .objects
-          .filter(name=faculty_name)
-          .first()
-        )
+        faculty_instance = Faculty.objects.get(name=faculty_name)
         
         specialty_instance = (
-          specialties_models
-          .Specialty
+          Specialty
           .objects
-          .filter(faculty=faculty_instance, name=staff['specialty'])
-          .first()
+          .get(faculty=faculty_instance, name=staff['specialty'])
         )
         
         del staff['faculty']
         staff['specialty'] = specialty_instance
         
-        staff_models.Staff.objects.create(**staff)
+        staff_list.append(Staff(**staff))
+        
+    Staff.objects.bulk_create(staff_list)
         
     print('done importing staff! 😁')

@@ -4,6 +4,6 @@ django-extensions
 django-filter
 django-debug-toolbar
 django-cotton
-xlwings
-pandas
-rich
+psycopg2-binary
+python-dotenv
+openpyxl

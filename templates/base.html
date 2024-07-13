@@ -24,6 +24,8 @@
     dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}" 
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
   >
+
+    <div id="no-content"></div>
     
     {% include 'includes/spinner.html' %}
     {% include 'includes/messages.html' %}
