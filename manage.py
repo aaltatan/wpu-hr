@@ -2,11 +2,13 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from dotenv import load_dotenv
+from pathlib import Path
 
 
-def main():
+def main(settings_module: str):
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', f'core.settings.{settings_module}')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -19,4 +21,12 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    
+    BASE_DIR = Path().resolve()
+    load_dotenv(BASE_DIR / '.env')
+    
+    DEBUG = os.getenv('DEBUG') == 'true'
+    
+    settings_module = 'dev' if DEBUG else 'prod'
+    
+    main(settings_module)
