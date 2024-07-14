@@ -1,9 +1,16 @@
 /venv
+/.vscode
+
+# pycache
 /__pycache__
 /*/__pycache__
 /*/*/__pycache__
 /*/*/*/__pycache__
-/.vscode
+
+# static from collect static
+/static/admin
+/static/django_extensions
+/static/django-htmx.js
 
 *.db
 .env
