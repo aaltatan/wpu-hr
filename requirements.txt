@@ -4,6 +4,9 @@ django-extensions
 django-filter
 django-debug-toolbar
 django-cotton
+django-cors-headers
 psycopg2-binary
 python-dotenv
 openpyxl
+whitenoise
+waitress
