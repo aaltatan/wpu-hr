@@ -2,7 +2,7 @@
 {% load i18n %}
 
 <c-table id="staff-table">
-
+{% if staff %}
   <c-slot name="thead">
     <tr>
       <th>#</th>
@@ -27,5 +27,5 @@
   <c-slot name="pagination">
     {% include 'apps/staff/partials/pagination.html' %}
   </c-slot>
-
+{% endif %}
 </c-table>

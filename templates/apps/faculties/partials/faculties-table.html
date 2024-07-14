@@ -2,6 +2,7 @@
 {% load i18n %}
 
 <c-table id="faculties-table">
+{% if faculties %}
 
     <c-slot name="thead">
       <tr>
@@ -33,4 +34,5 @@
       {% endfor %}
     </c-slot>
 
+{% endif %}
 </c-table>

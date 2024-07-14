@@ -16,6 +16,7 @@
     <div class="col-span-2">
 
       <c-table id="results-table">
+      {% if faculties %}
   
         <c-slot name="thead">
           <tr>
@@ -49,6 +50,7 @@
           {% endfor %}
         </c-slot>
     
+      {% endif %}
       </c-table>
 
     </div>
