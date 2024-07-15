@@ -20,7 +20,9 @@ DEBUG = os.getenv('DEBUG') == 'true'
 
 settings_module = 'dev' if DEBUG else 'prod'
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', f'core.settings.{settings_module}')
+os.environ.setdefault(
+  'DJANGO_SETTINGS_MODULE', 
+  f'core.settings.{settings_module}'
+)
 
-application = get_wsgi_application()
-application = WhiteNoise(application, root='static')
+application = WhiteNoise(get_wsgi_application(), root='static')

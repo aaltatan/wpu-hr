@@ -1,11 +1,9 @@
-/venv
-/.vscode
+venv/
+node_modules/
+.vscode/
 
 # pycache
-/__pycache__
-/*/__pycache__
-/*/*/__pycache__
-/*/*/*/__pycache__
+__pycache__/
 
 # static from collect static
 /static/admin
