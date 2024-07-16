@@ -11,4 +11,5 @@ __pycache__/
 /static/django-htmx.js
 
 *.db
+*.log
 .env

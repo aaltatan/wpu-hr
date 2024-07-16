@@ -11,7 +11,6 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from django.core.wsgi import get_wsgi_application
-from whitenoise import WhiteNoise
 
 BASE_DIR = Path().resolve()
 load_dotenv(BASE_DIR / '.env')
@@ -25,4 +24,4 @@ os.environ.setdefault(
   f'core.settings.{settings_module}'
 )
 
-application = WhiteNoise(get_wsgi_application(), root='static')
+application = get_wsgi_application()
